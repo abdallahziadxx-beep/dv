@@ -1,0 +1,432 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Vision | Ayman Abdullah Ziad - حلول إنترنت الأشياء المتقدمة</title>
+  <meta name="description" content="شركة الرؤية الرقمية - نحول أفكارك إلى أنظمة ذكية متكاملة باستخدام أحدث تقنيات إنترنت الأشياء (IoT) و ESP32 للمنازل والمشاريع الصناعية."/>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+  <style>
+    /* ------------------------------------- */
+    /* 1. Global Variables and Resets */
+    /* ------------------------------------- */
+    :root{
+      --bg:#050912; /* Very Deep Navy Blue */
+      --card:#0a1220; /* Slightly lighter card background */
+      --muted:#b0b8c4;
+      --accent:#00b4d8; /* Brighter Blue */
+      --accent-grad: linear-gradient(90deg, #00b4d8, #0077b6);
+      --glass: rgba(255,255,255,0.08);
+      --radius:16px;
+      --max-width:1200px;
+      --transition:.4s;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:'Cairo', sans-serif;
+      /* خلفية متدرجة تعكس العمق التقني */
+      background: linear-gradient(180deg,var(--bg) 0%, #03060a 100%);
+      color:#e6f0ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.7;
+      font-size:16px;
+    }
+    a{color:var(--accent);text-decoration:none;transition:color var(--transition)}
+    a:hover{color:#77e0ff;}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    h1,h2,h3{font-weight:700;line-height:1.2;}
+    .section-spacing{padding:80px 0;}
+
+
+    /* ------------------------------------- */
+    /* 2. Navigation */
+    /* ------------------------------------- */
+    header{position:sticky;top:0;z-index:100;background:rgba(5, 9, 18, 0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--glass)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    /* تحسين الشعار */
+    .logo{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);padding:2px;} 
+    .brand h1{font-size:20px;margin:0;font-weight:800}
+    .brand span{margin:0;font-size:12px;color:var(--muted);font-weight:400}
+
+
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);transition:all var(--transition);font-weight:600}
+    .nav-links a:hover{color:#fff;background:var(--glass)}
+    .btn-primary{background:var(--accent-grad);padding:10px 18px;border-radius:10px;color:var(--bg);font-weight:700;box-shadow:0 6px 18px rgba(0, 180, 216, 0.3)}
+
+
+    /* ------------------------------------- */
+    /* 3. Hero Section */
+    /* ------------------------------------- */
+    .hero-section{display:flex;flex-direction:column;align-items:center;text-align:center;padding:120px 0 100px 0;position:relative;overflow:hidden;}
+    .hero-title{font-size:52px;margin:0;font-weight:800;max-width:850px;background:linear-gradient(90deg, #90e0ef 0%, #00b4d8 50%, #48cae4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero-desc{color:var(--muted);max-width:750px;margin:20px auto 30px;}
+    .cta-row{display:flex;gap:16px;align-items:center}
+    .cta-secondary{color:var(--accent);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:rgba(0,180,216,0.1);transition:all var(--transition)}
+    .cta-secondary:hover{background:var(--accent-grad);color:var(--bg);}
+
+
+    /* 4. Statistics/Tech Logos */
+    .stats-bar{margin-top:60px;display:flex;gap:40px;align-items:center;justify-content:center}
+    .stat{text-align:center}
+    .stat-number{font-size:36px;color:var(--accent);font-weight:800;line-height:1}
+    .stat-label{color:var(--muted);font-size:14px;margin-top:4px}
+    .tech-logos{margin-top:40px;color:var(--muted);font-size:14px}
+
+
+    /* ------------------------------------- */
+    /* 4. Features/Services */
+    /* ------------------------------------- */
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .feature-card{background:var(--card);padding:28px;border-radius:var(--radius);border:1px solid var(--glass);box-shadow:0 10px 30px rgba(0,0,0,0.4);transition:transform var(--transition);height:100%}
+    .feature-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.6)}
+    .feature-card h3{margin-top:16px;color:#fff}
+    .feature-icon{width:56px;height:56px;border-radius:12px;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:24px}
+    .feature-card p{color:var(--muted);margin-top:8px}
+
+
+    /* ------------------------------------- */
+    /* 5. About/Founder */
+    /* ------------------------------------- */
+    .about-flex{display:flex;gap:40px;align-items:center;justify-content:space-between}
+    .about-text{flex:1;}
+    .founder-card{width:320px;padding:20px;border-radius:var(--radius);background:var(--card);border:1px solid var(--glass);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.4)}
+    .founder-card img{width:180px;height:180px;border-radius:50%;object-fit:cover;margin-bottom:15px;border:4px solid var(--accent);}
+    .founder-card h4{margin:0;color:#fff}
+    .founder-card p{color:var(--muted);font-size:14px;}
+
+
+    /* ------------------------------------- */
+    /* 6. Projects */
+    /* ------------------------------------- */
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .project-item{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--glass);transition:all var(--transition)}
+    .project-item:hover{transform:scale(1.02);box-shadow:0 15px 40px rgba(0,0,0,0.6)}
+    .project-item img{width:100%;height:200px;object-fit:cover;display:block;}
+    .project-info{padding:15px}
+    .project-info h4{margin:0 0 5px 0;color:var(--accent)}
+    .project-info p{color:var(--muted);font-size:14px;margin:0}
+
+
+    /* ------------------------------------- */
+    /* 7. Contact */
+    /* ------------------------------------- */
+    .contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px}
+    .contact-info-block{background:var(--card);padding:30px;border-radius:var(--radius);border:1px solid var(--glass)}
+    .contact-info-block p{margin:15px 0;display:flex;align-items:center;gap:15px;color:#fff}
+    .contact-info-block p i{color:var(--accent);font-size:20px;width:24px;}
+    
+    .form-card{background:var(--card);padding:30px;border-radius:var(--radius);border:1px solid var(--glass)}
+    .form-card label{display:block;margin-bottom:8px;font-weight:600;color:var(--muted);font-size:14px}
+    .form-card input, .form-card textarea{
+      width:100%;padding:12px;border-radius:8px;border:1px solid var(--glass);background:rgba(255,255,255,0.02);color:#e6f0ff;margin-bottom:15px;transition:border-color var(--transition);
+      font-family:'Cairo', sans-serif;
+    }
+    .form-card input:focus, .form-card textarea:focus{outline:none;border-color:var(--accent)}
+    .form-card .submit{
+        margin-top:10px;border:0;cursor:pointer;font-size:16px;
+    }
+
+
+    /* ------------------------------------- */
+    /* 8. Utility & Footer */
+    /* ------------------------------------- */
+    .text-center{text-align:center}
+    .whatsapp-float{position:fixed;right:25px;bottom:25px;background:linear-gradient(45deg,#25D366,#128C7E);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;box-shadow:0 10px 25px rgba(0,0,0,0.6);z-index:90;font-size:28px;transition:transform .2s;}
+    .whatsapp-float:hover{transform:scale(1.1)}
+
+
+    footer{padding:30px 0;color:var(--muted);text-align:center;font-size:14px;border-top:1px solid var(--glass)}
+
+
+    /* Scroll Reveal (JavaScript) */
+    .reveal-item{opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+    .reveal-item.visible{opacity:1;transform:none}
+    
+    /* ------------------------------------- */
+    /* 9. Responsiveness */
+    /* ------------------------------------- */
+    @media(max-width:1024px){
+        .about-flex{flex-direction:column;text-align:center;}
+        .founder-card{margin:30px auto 0 auto;}
+        .contact-grid{grid-template-columns:1fr}
+        .hero-title{font-size:42px;}
+        .stats-bar{flex-wrap:wrap;justify-content:space-around}
+        .stat{flex-basis:40%;}
+    }
+    @media(max-width:768px){
+        .nav-links{display:none} /* Mobile menu */
+        .section-spacing{padding:60px 0;}
+        .hero-title{font-size:32px;}
+    }
+    @media(max-width:480px){
+        .container{padding:0 15px;}
+        .hero-section{padding:80px 0 60px 0;}
+        .cta-row{flex-direction:column}
+        .cta-row a{width:100%}
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">
+          <img src="logo.png" alt="شعار الرؤية الرقمية" class="logo">
+          <div>
+            <h1>الرؤية الرقمية</h1>
+            <span>حلول IoT متقدمة</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#services">الخدمات</a>
+          <a href="#projects">المشاريع</a>
+          <a href="#about">من نحن</a>
+          <a href="#contact" class="btn-primary">تواصل معنا</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <section id="home" class="hero-section">
+      <h2 class="hero-title reveal-item">نحول رؤيتك إلى واقع ذكي ومتصل باستخدام إنترنت الأشياء</h2>
+      <p class="hero-desc reveal-item">نقدم حلول IoT مخصصة، من تصميم الدائرة إلى تطوير منصة التحكم السحابية. تخصصنا هو أنظمة المراقبة والتحكم الموثوقة القائمة على وحدات **ESP32** و **GSM** للمشاريع الصناعية والسكنية.</p>
+      <div class="cta-row reveal-item">
+        <a class="btn-primary" href="#contact">ابدأ مشروعك الآن <i class="fa-solid fa-arrow-left"></i></a>
+        <a class="cta-secondary" href="#projects">اطلع على قصص النجاح</a>
+      </div>
+
+
+      <div class="stats-bar reveal-item">
+          <div class="stat">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">سنوات خبرة</div>
+          </div>
+          <div class="stat">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">مشروع مكتمل</div>
+          </div>
+          <div class="stat">
+              <div class="stat-number">300+</div>
+              <div class="stat-label">جهاز متصل</div>
+          </div>
+      </div>
+      <div class="tech-logos reveal-item">
+          <i class="fa-solid fa-microchip"></i> ESP32 <i class="fa-solid fa-wifi"></i> MQTT <i class="fa-solid fa-cloud"></i> AWS IoT <i class="fa-solid fa-gauge"></i> SCADA
+      </div>
+
+
+    </section>
+    
+    <section id="services" class="section-spacing">
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">لماذا تختار حلول الرؤية الرقمية؟ (نحن نضمن النتائج)</h2>
+        <div class="grid-3">
+            <div class="feature-card reveal-item">
+                <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>هندسة الأجهزة المخصصة لتقليل التكاليف</h3>
+                <p class="muted">
+                    نحن نصمم ونطور أجهزة ذكية مصممة خصيصاً لمشروعك باستخدام متحكمات **ESP32** الموفرة للطاقة. هذا يضمن أنك تدفع فقط مقابل الوظائف التي تحتاجها، مما يقلل **تكاليف التشغيل والإنتاج** مع ضمان الكفاءة العالية.
+                </p>
+            </div>
+            <div class="feature-card reveal-item" style="transition-delay:0.1s">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>الاتصال الدائم والتحكم عن بعد</h3>
+                <p class="muted">
+                    نوفر حلول اتصال ثنائية (عبر **Wi-Fi** و **GSM/GPRS**) لضمان بقاء نظامك متصلاً حتى في أصعب المواقع. يمنحك هذا القدرة على **التحكم والمراقبة الكاملة** لأصولك من أي مكان في العالم، في أي وقت.
+                </p>
+            </div>
+            <div class="feature-card reveal-item" style="transition-delay:0.2s">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>بيانات واضحة لاتخاذ القرارات الذكية</h3>
+                <p class="muted">
+                    نحول البيانات الأولية إلى رؤى عملية عبر لوحات تحكم تفاعلية (Dashboards). هذا يمنحك **القدرة على اتخاذ قرارات سريعة ومدروسة**، بناءً على أرقام دقيقة وتنبيهات فورية، بدلاً من التخمين أو التأخير.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="section-spacing">
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">الرؤية الرقمية: خبراء في دمج الهاردوير والسوفتوير</h2>
+        <div class="about-flex">
+            <div class="about-text reveal-item">
+                <h3>حول شركة الرؤية الرقمية: من الفكرة إلى الأتمتة الكاملة</h3>
+                <p class="muted">
+                    نحن متخصصون في تحويل التحديات التشغيلية المعقدة إلى **أنظمة ذكية متكاملة** تعمل بشكل تلقائي. مهمتنا تتجاوز مجرد تركيب الأجهزة؛ نحن نطور كل من المكونات المادية (الهاردوير) والمنصات السحابية (السوفتوير) لضمان التوافق الكامل والكفاءة القصوى.
+                </p>
+                <p class="muted">
+                    نغطي جميع مراحل المشروع: من رسم الدوائر الإلكترونية المطبوعة (PCB) إلى نشر النظام على السحابة (Cloud Deployment). هذه الخبرة المتكاملة تضمن لك نظاماً موثوقاً وقابلاً للتوسع، يقلل من **التكاليف التشغيلية** ويحسن **كفاءة العمليات**.
+                </p>
+                <ul class="muted" style="padding-right:20px;">
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **تطوير متكامل:** نجمع بين تصميم الأجهزة المادية والبرمجة السحابية في مكان واحد.</li>
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **هندسة موثوقة:** استخدام لغات برمجة متقدمة (C++/Arduino) لضمان أداء الأجهزة بسرعة ودقة عالية.</li>
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **أمان وقابلية توسع:** بناء قنوات اتصال مشفرة وموثوقة لتحمل النمو المستقبلي لبياناتك.</li>
+                </ul>
+            </div>
+            <div class="founder-card reveal-item" style="transition-delay:0.2s">
+                <img src="founder.jpg" alt="Ayman Abdullah Ziad">
+                <h4>أيمن عبدالله زياد</h4>
+                <h4 style="font-size:16px; font-weight:600; color:var(--accent); margin-top:5px;">Ayman Abdullah Ziad</h4> 
+                <p>مؤسس ومدير الأنظمة | مهندس IoT</p>
+                <a href="#contact" class="btn-primary" style="margin-top:15px;display:block">تواصل مع المؤسس مباشرة</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" class="section-spacing">
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">مشاريعنا: حلول ذكية تم تنفيذها بنجاح</h2>
+        <div class="project-grid">
+            
+            <div class="project-item reveal-item">
+                <img src="project1.jpg" alt="نظام قياس الحرارة والرطوبة وحفظ البيانات">
+                <div class="project-info">
+                    <h4>مراقبة البيئة الذكية وحفظ السجلات</h4>
+                    <p>**الوصف:** نظام يقيس **درجة الحرارة والرطوبة** ويخزن البيانات تلقائياً في السحابة كل وقت محدد، مع إمكانية توليد تقارير يومية، أسبوعية، وشهرية دقيقة.</p>
+                    <p>**يفيد في:** **حماية المخزون والمنتجات الحساسة** في المستودعات والمزارع وغرف التبريد، حيث يضمن النظام الالتزام بالمعايير البيئية المطلوبة لتجنب التلف والخسائر.</p>
+                </div>
+            </div>
+            
+            <div class="project-item reveal-item" style="transition-delay:0.1s">
+                <img src="project2.jpg" alt="مشروع الموقف الذكي للسيارات">
+                <div class="project-info">
+                    <h4>نظام إدارة المواقف الذكي والتحكم في البوابات</h4>
+                    <p>**الوصف:** نظام متكامل لموقف السيارات يتيح **التحكم في البوابة عن بعد** من أي مكان في العالم، بالإضافة إلى معرفة دقيقة **لعدد المواقف الفارغة والممتلئة** في الوقت الفعلي.</p>
+                    <p>**يفيد في:** **تحسين كفاءة مواقف الشركات والمجمعات السكنية** من خلال تسهيل الدخول والخروج، وإدارة استغلال المواقف بكفاءة عالية وتقليل الازدحام.</p>
+                </div>
+            </div>
+            
+            <div class="project-item reveal-item" style="transition-delay:0.2s">
+                <img src="project3.jpg" alt="روبوت متحرك بذراع آلية">
+                <div class="project-info">
+                    <h4>روبوت متحرك بذراع آلية للتحكم عن بعد</h4>
+                    <p>**الوصف:** تطوير روبوت متحرك ومزود **بذراع آلية متقدمة** يتم التحكم بها بالكامل عن بعد من خلال متصفح الويب على الهاتف الذكي أو الحاسوب.</p>
+                    <p>**يفيد في:** **تنفيذ مهام المراقبة والفحص والتعامل مع المواد** في البيئات الخطرة أو التي يصعب الوصول إليها، مما يضمن سلامة الأفراد ومرونة العمليات.</p>
+                </div>
+            </div>
+
+
+             <div class="project-item reveal-item" style="transition-delay:0.3s">
+                <img src="project4.jpg" alt="مشروع الباب الذكي باستخدام البطاقات الذكية">
+                <div class="project-info">
+                    <h4>نظام التحكم الذكي بالوصول (الباب الذكي)</h4>
+                    <p>**الوصف:** باب ذكي يتيح الدخول والخروج عبر **البطائق الذكية (RFID)**، مع تسجيل دقيق لجميع حركات الفتح والإغلاق وتحديد هوية المستخدم في كل مرة.</p>
+                    <p>**يفيد في:** **زيادة الأمان والتحكم في الوصول** للمناطق الحساسة في الشركات والمختبرات والمنازل، وتوفير سجل دقيق لأوقات دخول وخروج الموظفين أو الأفراد.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center reveal-item" style="margin-top:40px;">
+            <a href="#contact" class="cta-secondary">لدي مشروع مشابه؟ تواصل معنا للتنفيذ</a>
+        </div>
+    </section>
+
+
+    <section id="contact" class="section-spacing">
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">لنتحدث عن مشروعك التالي: استشر الخبراء اليوم</h2>
+        <div class="contact-grid">
+            <div class="form-card reveal-item">
+                <h3>اطلب استشارة مجانية وعرض سعر</h3>
+                <form id="contactForm">
+                    <label for="name">الاسم الكامل</label>
+                    <input id="name" name="name" required placeholder="مثال: خالد محمد" />
+
+
+                    <label for="email">البريد الإلكتروني</label>
+                    <input id="email" name="email" type="email" placeholder="khalid@mail.com" required/>
+                    
+                    <label for="subject">موضوع الرسالة (نوع المشروع)</label>
+                    <input id="subject" name="subject" placeholder="مثال: نظام مراقبة مزرعة / أتمتة منزل" required/>
+
+
+                    <label for="message">تفاصيل المشروع/الرسالة</label>
+                    <textarea id="message" name="message" rows="5" placeholder="صف بإيجاز ما هي المشكلة التي تريد حلها أو الحل الذي تبحث عنه." required></textarea>
+
+
+                    <button type="submit" class="submit btn-primary">إرسال الطلب</button>
+                </form>
+            </div>
+            <div class="contact-info-block reveal-item" style="transition-delay:0.2s">
+                <h3>معلومات التواصل المباشر</h3>
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    <strong>البريد الإلكتروني:</strong> <a href="mailto:aimanziadxx@gmail.com">aimanziadxx@gmail.com</a>
+                </p>
+                <p id="wa-info">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <strong>واتساب:</strong> <a href="https://wa.me/967777752638">+967 777 752 638</a>
+                </p>
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <strong>الموقع:</strong> اليمن | خدماتنا تغطي منطقة الشرق الأوسط (عن بعد)
+                </p>
+                <hr style="border-color:var(--glass);margin:25px 0">
+                <p class="muted" style="font-size:14px;display:block;margin:0">نحن متواجدون للرد على استفساراتكم خلال ساعات العمل الرسمية. لا تتردد في التواصل لبدء نقاش حول كيفية تحقيق أهدافك التقنية.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+      <div>© <span id="year"></span> شركة الرؤية الرقمية — Digital Vision. جميع الحقوق محفوظة.</div>
+    </footer>
+
+
+  </main>
+
+
+  <a id="whatsappFloat" class="whatsapp-float" href="https://wa.me/967777752638" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    // Scroll Reveal Animation (Improved visibility threshold)
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){e.target.classList.add('visible')}
+      })
+    },{threshold:0.1}); // Trigger when 10% of element is visible
+    document.querySelectorAll('.reveal-item').forEach(el=>observer.observe(el));
+
+
+    // Contact Form: Open mailto with content (No Backend)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value || '');
+      const email = encodeURIComponent(document.getElementById('email').value || '');
+      const subject = encodeURIComponent(document.getElementById('subject').value || 'استفسار عام');
+      const message = encodeURIComponent(document.getElementById('message').value || '');
+      
+      const body = 
+        encodeURIComponent('الاسم: ') + name + "%0A" + 
+        encodeURIComponent('البريد: ') + email + "%0A%0A" + 
+        encodeURIComponent('تفاصيل الرسالة: ') + message;
+
+
+      // رابط الإرسال بالبريد الإلكتروني
+      window.location.href = `mailto:aimanziadxx@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+
+  </script>
+</body>
+</html>
