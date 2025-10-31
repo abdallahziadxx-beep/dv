@@ -1,13 +1,13 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digital Vision | Ayman Abdullah Ziad - حلول إنترنت الأشياء المتقدمة</title>
-  <meta name="description" content="شركة الرؤية الرقمية - نحول أفكارك إلى أنظمة ذكية متكاملة باستخدام أحدث تقنيات إنترنت الأشياء (IoT) و ESP32 للمنازل والمشاريع الصناعية."/>
+  <title>Digital Vision | Ayman Abdullah Ziad - حلول إنترنت الأشياء المتقدمة لتوفير التكاليف</title>
+  <meta name="description" content="شركة الرؤية الرقمية - نحن نحول تحدياتك التشغيلية إلى أنظمة ذكية تحقق وفورات كبرى وأتمتة كاملة باستخدام IoT و ESP32 للمنازل والمشاريع الصناعية."/>
 
 
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
@@ -16,140 +16,365 @@
     /* 1. Global Variables and Resets */
     /* ------------------------------------- */
     :root{
-      --bg:#050912; /* Very Deep Navy Blue */
-      --card:#0a1220; /* Slightly lighter card background */
-      --muted:#b0b8c4;
-      --accent:#00b4d8; /* Brighter Blue */
-      --accent-grad: linear-gradient(90deg, #00b4d8, #0077b6);
+      /* ⭐ الألوان الأساسية القائمة على الأزرق والسيان مع تعزيز التوهج ⭐ */
+      --bg: linear-gradient(135deg, #0d012c, #000000); /* خلفية متدرجة عميقة جداً */
+      --card: rgba(10, 0, 40, 0.85); /* بطاقات شبه شفافة بلون أرجواني/أسود داكن */
+      --text-light: #e0f7fa; /* أزرق فاتح جداً للنصوص الرئيسية */
+      --muted: #a7d9f7; /* أزرق باهت للنصوص الثانوية */
+      --accent:#00ffff; /* أزرق سيان كهربائي (الأكثر توهجاً) */
+      --accent-alt:#00e6e6; /* درجة أغمق قليلاً من الأزرق السيان */
+      --accent-grad: linear-gradient(90deg, #00ffff, #c814ff); /* تدرج بين السيان والأخضر النيون */
       --glass: rgba(255,255,255,0.08);
       --radius:16px;
       --max-width:1200px;
       --transition:.4s;
+      
+      /* 💥 ظلال نيون موحدة قوية جداً */
+      --neon-glow: 0 0 18px rgb(251, 0, 255), 0 0 30px rgba(0, 255, 255, 0.7);
+      --neon-glow-hover: 0 0 25px rgb(225, 0, 255), 0 0 45px rgb(0, 238, 255); /* وهج أقوى عند التحويم */
+      --whatsapp-color: linear-gradient(45deg, #029500, #00e6e6); /* تدرج أخضر نيون للواتساب */
     }
     *{box-sizing:border-box}
     html,body{height:100%;scroll-behavior:smooth;}
     body{
       margin:0;
       font-family:'Cairo', sans-serif;
-      /* خلفية متدرجة تعكس العمق التقني */
-      background: linear-gradient(180deg,var(--bg) 0%, #03060a 100%);
-      color:#e6f0ff;
+      background:var(--bg); 
+      color:var(--text-light); 
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.7;
       font-size:16px;
     }
-    a{color:var(--accent);text-decoration:none;transition:color var(--transition)}
-    a:hover{color:#77e0ff;}
     .container{max-width:var(--max-width);margin:0 auto;padding:0 24px}
-    h1,h2,h3{font-weight:700;line-height:1.2;}
     .section-spacing{padding:80px 0;}
+    
+    /* 💥 النيون واللمعان على العناوين والـ Text */
+    h1,h2,h3{
+        font-weight:900; 
+        line-height:1.2;
+        color:var(--text-light); 
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* تطبيق ظل نيون خفيف */
+    }
+    /* إضاءة أقوى للعناوين الوسطى الهامة */
+    h2.text-center {
+        text-shadow: 0 0 25px rgba(0, 255, 255, 1), 0 0 50px rgba(0, 255, 255, 0.8);
+    }
+    
+    a{color:var(--accent);text-decoration:none;transition:all var(--transition)}
+    a:hover{color:#7affff;text-shadow: 0 0 15px rgba(122, 255, 255, 0.8);}
 
+    /* 💡 الحاوية الخاصة بتأثير Vanta.js 💡 */
+    #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -10;
+        opacity: 0.2; /* تقليل الشفافية قليلاً لعدم تشتيت الانتباه */
+    }
 
     /* ------------------------------------- */
     /* 2. Navigation */
     /* ------------------------------------- */
-    header{position:sticky;top:0;z-index:100;background:rgba(5, 9, 18, 0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--glass)}
+    header{position:sticky;top:0;z-index:100;background:rgb(22, 1, 64);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0, 251, 238, 0.26);}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    /* تحسين الشعار */
-    .logo{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);padding:2px;} 
-    .brand h1{font-size:20px;margin:0;font-weight:800}
-    .brand span{margin:0;font-size:12px;color:var(--muted);font-weight:400}
+    .logo{
+        width:100px;height:100px;border-radius:50%;object-fit:cover;
+        border:4px solid var(--accent); 
+        padding:5px;
+        box-shadow: var(--neon-glow); /* ظل نيون موحد */
+    } 
+    .brand h1{
+        font-size:24px; 
+        margin:0;
+        font-weight:900;
+        color:var(--text-light);
+        text-shadow: var(--neon-glow); /* ظل نيون موحد */
+    }
+    .brand span{margin:0;font-size:14px;color:var(--muted);font-weight:600;}
 
 
     .nav-links{display:flex;gap:28px;align-items:center}
-    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);transition:all var(--transition);font-weight:600}
-    .nav-links a:hover{color:#fff;background:var(--glass)}
-    .btn-primary{background:var(--accent-grad);padding:10px 18px;border-radius:10px;color:var(--bg);font-weight:700;box-shadow:0 6px 18px rgba(0, 180, 216, 0.3)}
+    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);transition:all var(--transition);font-weight:700}
+    .nav-links a:hover{color:var(--accent);background:rgba(0, 255, 255, 0.15);transform:scale(1.05);text-shadow: 0 0 15px rgba(0, 255, 255, 0.9);}
+    
+    /* 💥 تعزيز الأزرار الأساسية - تبدو متوهجة وقوية */
+    .btn-primary{
+        background:var(--accent-grad);
+        padding:16px 28px; /* زيادة حجم الزر بشكل أكبر */
+        border-radius:12px;
+        color:#000; /* لون نص أسود للحصول على تباين عالي جداً */
+        font-weight:900;
+        box-shadow:var(--neon-glow); /* ظل نيون موحد */
+        transition:all var(--transition);
+        transform:scale(1);
+    }
+    .btn-primary:hover {
+        box-shadow:var(--neon-glow-hover); /* وهج أقوى عند التحويم */
+        transform:scale(1.1); /* تكبير ملحوظ */
+    }
 
 
     /* ------------------------------------- */
     /* 3. Hero Section */
     /* ------------------------------------- */
     .hero-section{display:flex;flex-direction:column;align-items:center;text-align:center;padding:120px 0 100px 0;position:relative;overflow:hidden;}
-    .hero-title{font-size:52px;margin:0;font-weight:800;max-width:850px;background:linear-gradient(90deg, #90e0ef 0%, #00b4d8 50%, #48cae4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .hero-desc{color:var(--muted);max-width:750px;margin:20px auto 30px;}
-    .cta-row{display:flex;gap:16px;align-items:center}
-    .cta-secondary{color:var(--accent);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:rgba(0,180,216,0.1);transition:all var(--transition)}
-    .cta-secondary:hover{background:var(--accent-grad);color:var(--bg);}
+    /* ⭐ العنوان الرئيسي بتأثير نيون وشفافية متدرجة ⭐ */
+    .hero-title{
+        font-size:64px; /* حجم خط أكبر */
+        margin:0;
+        font-weight:900;
+        max-width:900px;
+        /* تدرج لوني يعطي مظهر معدني نيون */
+        background:linear-gradient(90deg, #7affff 0%, #00ffff 50%, #c814ff 100%);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        text-shadow: 0 0 50px rgba(0, 255, 255, 1), 0 0 80px rgba(20, 63, 255, 0.9); /* تعزيز النيون لتبدو أكثر قوة */
+    }
+    .hero-desc{color:var(--muted);max-width:750px;margin:25px auto 35px;font-size:19px;}
+    .cta-row{display:flex;gap:25px;align-items:center} 
+    .cta-secondary{
+        color:var(--accent);
+        font-weight:800; 
+        padding:16px 28px;
+        border-radius:12px;
+        border:2px solid var(--accent);
+        background:rgba(0,255,255,0.1); 
+        transition:all var(--transition);
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.9); /* ظل نص نيون */
+    }
+    .cta-secondary:hover{
+        background:var(--accent-grad);
+        color:#000;
+        box-shadow:var(--neon-glow-hover);
+        text-shadow:none;
+        transform:scale(1.1);
+    }
 
 
     /* 4. Statistics/Tech Logos */
-    .stats-bar{margin-top:60px;display:flex;gap:40px;align-items:center;justify-content:center}
-    .stat{text-align:center}
-    .stat-number{font-size:36px;color:var(--accent);font-weight:800;line-height:1}
-    .stat-label{color:var(--muted);font-size:14px;margin-top:4px}
-    .tech-logos{margin-top:40px;color:var(--muted);font-size:14px}
+    .stats-bar{margin-top:60px;display:flex;gap:60px;align-items:center;justify-content:center}
+    .stat{text-align:center;border-right:2px solid rgba(0, 255, 255, 0.2);padding-left:60px;}
+    .stat:last-child{border-right:none;}
+    /* 💥 تعزيز أرقام الإحصائيات - ساطعة للغاية */
+    .stat-number{
+        font-size:52px; 
+        color:var(--accent); 
+        font-weight:900;
+        line-height:1;
+        text-shadow: var(--neon-glow); /* نيون أزرق ساطع */
+    }
+    .stat-label{color:var(--muted);font-size:17px;margin-top:8px;}
+    /* 💥 تعزيز الشعارات التقنية */
+    .tech-logos{
+        margin-top:40px;
+        color:var(--accent); 
+        font-size:22px; 
+        letter-spacing:2px; 
+        text-shadow: 0 0 15px rgba(0, 255, 255, 1); 
+    }
+    .tech-logos i{
+        margin: 0 10px; 
+    }
 
 
     /* ------------------------------------- */
     /* 4. Features/Services */
     /* ------------------------------------- */
-    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-    .feature-card{background:var(--card);padding:28px;border-radius:var(--radius);border:1px solid var(--glass);box-shadow:0 10px 30px rgba(0,0,0,0.4);transition:transform var(--transition);height:100%}
-    .feature-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.6)}
-    .feature-card h3{margin-top:16px;color:#fff}
-    .feature-icon{width:56px;height:56px;border-radius:12px;background:var(--accent-grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:24px}
-    .feature-card p{color:var(--muted);margin-top:8px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px}
+    /* 💥 إضاءة على بطاقات الخدمات - تأثير الزجاج المتوهج */
+    .feature-card{
+        background:var(--card);
+        padding:40px; 
+        border-radius:var(--radius);
+        border:2px solid rgba(0,255,255,0.5); /* إطار نيون أقوى */
+        box-shadow:0 15px 40px rgba(0,0,0,0.8);
+        transition:all var(--transition);
+        height:100%;
+        position:relative;
+        overflow:hidden;
+        backdrop-filter: blur(8px); /* تأثير ضبابي إضافي */
+    }
+    .feature-card:hover{
+        transform:translateY(-12px) scale(1.04); 
+        box-shadow:0 0 60px rgba(0, 255, 255, 0.9), 0 30px 70px rgba(0,0,0,1); /* ظل وهج أزرق ساطع جداً */
+        border-color:var(--accent);
+    }
+    .feature-card h3{
+        margin-top:20px;
+        color:var(--accent); 
+        font-weight:900;
+        text-shadow: 0 0 15px rgba(0, 255, 255, 1);
+    }
+    .feature-icon{
+        width:70px;height:70px; /* حجم أكبر للأيقونة */
+        border-radius:18px;
+        background:var(--accent-grad);
+        display:flex;align-items:center;justify-content:center;
+        color:#000; 
+        font-size:35px; /* حجم أيقونة داخلي أكبر */
+        box-shadow:var(--neon-glow); /* وهج قوي للأيقونة */
+    }
+    .feature-card p{color:var(--muted);margin-top:15px;font-size:17px;}
+    .feature-card p strong{
+        font-weight:800; 
+        color:var(--text-light);
+        text-shadow: 0 0 8px rgba(224, 247, 250, 0.8);
+    }
 
 
     /* ------------------------------------- */
     /* 5. About/Founder */
     /* ------------------------------------- */
-    .about-flex{display:flex;gap:40px;align-items:center;justify-content:space-between}
+    .about-flex{display:flex;gap:50px;align-items:center;justify-content:space-between}
     .about-text{flex:1;}
-    .founder-card{width:320px;padding:20px;border-radius:var(--radius);background:var(--card);border:1px solid var(--glass);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.4)}
-    .founder-card img{width:180px;height:180px;border-radius:50%;object-fit:cover;margin-bottom:15px;border:4px solid var(--accent);}
-    .founder-card h4{margin:0;color:#fff}
-    .founder-card p{color:var(--muted);font-size:14px;}
+    .about-text h3{color:var(--text-light);text-shadow: var(--neon-glow);}
+    .about-text p{color:var(--muted);font-size:18px;}
+    .about-text strong{color:var(--accent);font-weight:800;text-shadow: 0 0 10px rgba(0, 255, 255, 0.9);}
+    .about-text ul{padding-right:25px; list-style:none;}
+    .about-text ul li{
+        margin-bottom:12px;
+        color:var(--muted);
+        font-size:17px;
+        display:flex;
+        align-items:flex-start;
+    }
+    .about-text ul li i{
+        color:var(--accent);
+        font-size:22px;
+        margin-left:15px;
+        margin-top:3px;
+        text-shadow: 0 0 12px rgba(0, 255, 255, 1);
+    }
+    .founder-card{
+        width:380px; 
+        padding:30px;
+        border-radius:var(--radius);
+        background:var(--card);
+        border:3px solid var(--accent); /* إطار أقوى */
+        text-align:center;
+        box-shadow:var(--neon-glow);
+        transition:transform var(--transition);
+        backdrop-filter: blur(8px);
+    }
+    .founder-card:hover{transform:translateY(-10px);box-shadow:var(--neon-glow-hover);}
+    .founder-card img{width:220px;height:220px;border-radius:50%;object-fit:cover;margin-bottom:20px;border:6px solid var(--accent);box-shadow:0 0 30px rgba(0, 255, 255, 1);}
+    .founder-card h4{margin:0;color:var(--text-light);font-weight:900;text-shadow: 0 0 15px rgba(224, 247, 250, 0.9);}
 
 
     /* ------------------------------------- */
     /* 6. Projects */
     /* ------------------------------------- */
-    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .project-item{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--glass);transition:all var(--transition)}
-    .project-item:hover{transform:scale(1.02);box-shadow:0 15px 40px rgba(0,0,0,0.6)}
-    .project-item img{width:100%;height:200px;object-fit:cover;display:block;}
-    .project-info{padding:15px}
-    .project-info h4{margin:0 0 5px 0;color:var(--accent)}
-    .project-info p{color:var(--muted);font-size:14px;margin:0}
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:30px}
+    .project-item{
+        background:var(--card);
+        border-radius:var(--radius);
+        overflow:hidden;
+        border:2px solid rgba(0,255,255,0.3);
+        transition:all var(--transition);
+        backdrop-filter: blur(8px);
+    }
+    .project-item:hover{
+        transform:scale(1.05);
+        box-shadow:0 0 50px rgba(0, 255, 255, 0.8), 0 25px 60px rgba(0,0,0,1);
+        border-color:var(--accent);
+    }
+    .project-item img{width:100%;height:250px;object-fit:cover;display:block;}
+    .project-info{padding:25px}
+    .project-info h4{
+        margin:0 0 15px 0;
+        color:var(--accent);
+        font-size:22px;
+        text-shadow: 0 0 15px rgba(0, 255, 255, 1);
+    }
+    .project-info p{color:var(--muted);font-size:16px;margin:0}
+    .project-info .p-problem{
+        font-weight:800; 
+        color:#fbc501; /* أحمر نيون لتسليط الضوء على المشكلة */
+        margin-bottom:10px;
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.9);
+    }
+    .project-info p strong{
+        color:var(--text-light);
+        font-weight:800;
+        text-shadow: 0 0 8px rgba(224, 247, 250, 0.7);
+    }
 
 
     /* ------------------------------------- */
     /* 7. Contact */
     /* ------------------------------------- */
     .contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px}
-    .contact-info-block{background:var(--card);padding:30px;border-radius:var(--radius);border:1px solid var(--glass)}
-    .contact-info-block p{margin:15px 0;display:flex;align-items:center;gap:15px;color:#fff}
-    .contact-info-block p i{color:var(--accent);font-size:20px;width:24px;}
+    .contact-info-block{
+        background:var(--card);
+        padding:40px;
+        border-radius:var(--radius);
+        border:2px solid rgba(0,255,255,0.4);
+        box-shadow:var(--neon-glow);
+        backdrop-filter: blur(8px);
+    }
+    .contact-info-block h3{color:var(--text-light);text-shadow: var(--neon-glow);}
+    .contact-info-block p{margin:20px 0;display:flex;align-items:center;gap:18px;color:var(--text-light);font-size:18px;}
+    .contact-info-block p i{color:var(--accent);font-size:26px;width:30px;text-shadow: 0 0 15px rgba(0, 255, 255, 1);}
     
-    .form-card{background:var(--card);padding:30px;border-radius:var(--radius);border:1px solid var(--glass)}
-    .form-card label{display:block;margin-bottom:8px;font-weight:600;color:var(--muted);font-size:14px}
+    .form-card{
+        background:var(--card);
+        padding:40px;
+        border-radius:var(--radius);
+        border:2px solid rgba(0,255,255,0.4);
+        box-shadow:var(--neon-glow);
+        backdrop-filter: blur(8px);
+    }
+    .form-card h3{color:var(--text-light);text-shadow: var(--neon-glow);}
+    .form-card label{display:block;margin-bottom:10px;font-weight:700;color:var(--text-light);font-size:16px;}
     .form-card input, .form-card textarea{
-      width:100%;padding:12px;border-radius:8px;border:1px solid var(--glass);background:rgba(255,255,255,0.02);color:#e6f0ff;margin-bottom:15px;transition:border-color var(--transition);
+      width:100%;padding:15px;border-radius:10px;border:2px solid rgba(0, 255, 255, 0.6);
+      background:rgba(255,255,255,0.05);color:var(--text-light);margin-bottom:20px;transition:border-color var(--transition);
       font-family:'Cairo', sans-serif;
+      font-size:16px;
     }
-    .form-card input:focus, .form-card textarea:focus{outline:none;border-color:var(--accent)}
+    .form-card input::placeholder, .form-card textarea::placeholder { 
+        color: rgba(167, 217, 247, 0.7);
+    }
+    .form-card input:focus, .form-card textarea:focus{
+        outline:none;
+        border-color:var(--accent);
+        box-shadow:0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(57, 255, 20, 0.8); /* ظل نيون أقوى عند التركيز */
+    }
     .form-card .submit{
-        margin-top:10px;border:0;cursor:pointer;font-size:16px;
+        margin-top:15px;border:0;cursor:pointer;font-size:18px;
     }
 
 
-    /* ------------------------------------- */
     /* 8. Utility & Footer */
-    /* ------------------------------------- */
     .text-center{text-align:center}
-    .whatsapp-float{position:fixed;right:25px;bottom:25px;background:linear-gradient(45deg,#25D366,#128C7E);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;box-shadow:0 10px 25px rgba(0,0,0,0.6);z-index:90;font-size:28px;transition:transform .2s;}
-    .whatsapp-float:hover{transform:scale(1.1)}
+    /* 💥 تعزيز زر الواتساب العائم - ساطع جداً */
+    .whatsapp-float{
+        position:fixed;right:30px;bottom:30px; 
+        background:var(--whatsapp-color); 
+        width:75px;height:75px; /* حجم أكبر */
+        border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        color:white;
+        box-shadow:0 15px 50px rgba(0,0,0,1), 0 0 40px rgba(57, 255, 20, 1.2); /* ظل نيون أخضر أقوى */
+        z-index:90;font-size:40px; 
+        transition:all .3s;
+    }
+    .whatsapp-float:hover{
+        transform:scale(1.3) rotate(10deg); /* تكبير ودوران أكثر */
+        box-shadow:0 15px 70px rgba(0,0,0,1), 0 0 70px rgba(57, 255, 20, 2); /* وهج أخضر ساطع جداً */
+    }
 
 
-    footer{padding:30px 0;color:var(--muted);text-align:center;font-size:14px;border-top:1px solid var(--glass)}
+    footer{padding:40px 0;color:var(--muted);text-align:center;font-size:16px;border-top:1px solid rgba(0,255,255,0.2);}
+    footer div{text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);}
 
 
     /* Scroll Reveal (JavaScript) */
-    .reveal-item{opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+    .reveal-item{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
     .reveal-item.visible{opacity:1;transform:none}
     
     /* ------------------------------------- */
@@ -159,26 +384,37 @@
         .about-flex{flex-direction:column;text-align:center;}
         .founder-card{margin:30px auto 0 auto;}
         .contact-grid{grid-template-columns:1fr}
-        .hero-title{font-size:42px;}
+        .hero-title{font-size:55px;}
         .stats-bar{flex-wrap:wrap;justify-content:space-around}
-        .stat{flex-basis:40%;}
+        .stat{flex-basis:45%;border-right:none;padding:0;}
     }
     @media(max-width:768px){
-        .nav-links{display:none} /* Mobile menu */
+        .nav-links{display:none}
         .section-spacing{padding:60px 0;}
-        .hero-title{font-size:32px;}
+        .hero-title{font-size:45px;}
+        .stat{margin-bottom:25px;}
+        .cta-row{flex-direction:column}
+        .cta-row a{width:100%}
     }
     @media(max-width:480px){
         .container{padding:0 15px;}
         .hero-section{padding:80px 0 60px 0;}
-        .cta-row{flex-direction:column}
-        .cta-row a{width:100%}
+        .hero-title{font-size:36px;}
+        .stats-bar{gap:20px;}
+        .stat{flex-basis:100%;}
+        .tech-logos{font-size:18px;}
+        .project-grid{gap:15px;}
+        .contact-info-block p{font-size:16px;gap:12px;}
+        .contact-info-block p i{font-size:22px;width:26px;}
+        .form-card input, .form-card textarea{padding:13px;font-size:15px;}
+        .form-card .submit{font-size:17px;padding:13px 22px;}
+        .whatsapp-float{width:65px;height:65px;font-size:35px;right:20px;bottom:20px;}
     }
-
-
   </style>
 </head>
 <body>
+  <div id="vanta-bg"></div> 
+
   <header>
     <div class="container">
       <nav class="nav">
@@ -194,7 +430,7 @@
           <a href="#services">الخدمات</a>
           <a href="#projects">المشاريع</a>
           <a href="#about">من نحن</a>
-          <a href="#contact" class="btn-primary">تواصل معنا</a>
+          <a href="#contact" class="btn-primary">استشارة مجانية</a> 
         </div>
       </nav>
     </div>
@@ -203,57 +439,57 @@
 
   <main class="container">
     <section id="home" class="hero-section">
-      <h2 class="hero-title reveal-item">نحول رؤيتك إلى واقع ذكي ومتصل باستخدام إنترنت الأشياء</h2>
-      <p class="hero-desc reveal-item">نقدم حلول IoT مخصصة، من تصميم الدائرة إلى تطوير منصة التحكم السحابية. تخصصنا هو أنظمة المراقبة والتحكم الموثوقة القائمة على وحدات **ESP32** و **GSM** للمشاريع الصناعية والسكنية.</p>
+      <h2 class="hero-title reveal-item">🎯  توقف عن إهدار الموارد!  نحن نحول تحدياتك التشغيلية إلى أنظمة ذكية تحقق وفورات كبرى وأتمتة كاملة. </h2>
+      <p class="hero-desc reveal-item">هل سئمت من العمليات اليدوية، الأخطاء البشرية، وفواتير التشغيل المرتفعة؟ خبرتنا في  IoT (بواسطة ESP32 و GSM)  لا تقتصر على الأجهزة، بل تضمن لك  مراقبة وتحكم عن بُعد بلا انقطاع ، و  تقارير دقيقة  تبني عليها قراراتك لخفض التكلفة وزيادة الكفاءة.</p>
       <div class="cta-row reveal-item">
-        <a class="btn-primary" href="#contact">ابدأ مشروعك الآن <i class="fa-solid fa-arrow-left"></i></a>
-        <a class="cta-secondary" href="#projects">اطلع على قصص النجاح</a>
+        <a class="btn-primary" href="#contact">💰  احجز استشارتك المجانية:  لنرسم خطة مشروعك لحل تحدٍ محدد! <i class="fa-solid fa-arrow-left"></i></a>
+        <a class="cta-secondary" href="#projects">كيف حقق عملاؤنا وفرات كبرى؟</a>
       </div>
 
 
       <div class="stats-bar reveal-item">
           <div class="stat">
               <div class="stat-number">5+</div>
-              <div class="stat-label">سنوات خبرة</div>
+              <div class="stat-label">سنوات خبرة موثقة</div>
           </div>
           <div class="stat">
               <div class="stat-number">10+</div>
-              <div class="stat-label">مشروع مكتمل</div>
+              <div class="stat-label">مشروع ناجح ومربح</div>
           </div>
           <div class="stat">
               <div class="stat-number">300+</div>
-              <div class="stat-label">جهاز متصل</div>
+              <div class="stat-label">جهاز متصل وآمن</div>
           </div>
       </div>
       <div class="tech-logos reveal-item">
-          <i class="fa-solid fa-microchip"></i> ESP32 <i class="fa-solid fa-wifi"></i> MQTT <i class="fa-solid fa-cloud"></i> AWS IoT <i class="fa-solid fa-gauge"></i> SCADA
+          <i class="fa-solid fa-microchip"></i>  ESP32  <i class="fa-solid fa-wifi"></i>  MQTT  <i class="fa-solid fa-cloud"></i>  AWS IoT  <i class="fa-solid fa-gauge"></i>  SCADA 
       </div>
 
 
     </section>
     
     <section id="services" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">لماذا تختار حلول الرؤية الرقمية؟ (نحن نضمن النتائج)</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">💰 لماذا الاستثمار معنا هو أفضل قرار لخفض التكاليف وزيادة الإنتاجية؟ (نحن نضمن عوائد فورية على استثمارك)</h2>
         <div class="grid-3">
             <div class="feature-card reveal-item">
                 <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
-                <h3>هندسة الأجهزة المخصصة لتقليل التكاليف</h3>
+                <h3>📉  تقليل تكاليف التشغيل والإنتاج بنسبة تصل إلى 40% </h3>
                 <p class="muted">
-                    نحن نصمم ونطور أجهزة ذكية مصممة خصيصاً لمشروعك باستخدام متحكمات **ESP32** الموفرة للطاقة. هذا يضمن أنك تدفع فقط مقابل الوظائف التي تحتاجها، مما يقلل **تكاليف التشغيل والإنتاج** مع ضمان الكفاءة العالية.
+                    نتجاوز استخدام الأجهزة الجاهزة الباهظة! نصمم لك أجهزة  مخصصة تمامًا (PCB)  باستخدام  ESP32 ، مما يعني أنك تدفع مقابل الوظيفة فقط. النتيجة؟  أجهزة أكثر كفاءة، تكلفة شراء وإنتاج أقل بكثير ، وعمر تشغيلي أطول.
                 </p>
             </div>
             <div class="feature-card reveal-item" style="transition-delay:0.1s">
                 <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>الاتصال الدائم والتحكم عن بعد</h3>
+                <h3>🛡️  نظام مراقبة وتحكم "ضد الفشل" بأي موقع جغرافي </h3>
                 <p class="muted">
-                    نوفر حلول اتصال ثنائية (عبر **Wi-Fi** و **GSM/GPRS**) لضمان بقاء نظامك متصلاً حتى في أصعب المواقع. يمنحك هذا القدرة على **التحكم والمراقبة الكاملة** لأصولك من أي مكان في العالم، في أي وقت.
+                    لا مزيد من القلق حول انقطاع الإنترنت! نجهز نظامك باتصال  احتياطي (Wi-Fi + GSM/GPRS) . نظامك سيبقى  متصلاً 24/7  حتى في المناطق النائية. هذا يضمن  عدم خسارة بيانات  أو  توقف عمليات حيوية ، ويمنحك  السلطة المطلقة  للتحكم من هاتفك.
                 </p>
             </div>
             <div class="feature-card reveal-item" style="transition-delay:0.2s">
                 <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h3>بيانات واضحة لاتخاذ القرارات الذكية</h3>
+                <h3>📊  تحويل "البيانات المبعثرة" إلى رؤى مالية حاسمة </h3>
                 <p class="muted">
-                    نحول البيانات الأولية إلى رؤى عملية عبر لوحات تحكم تفاعلية (Dashboards). هذا يمنحك **القدرة على اتخاذ قرارات سريعة ومدروسة**، بناءً على أرقام دقيقة وتنبيهات فورية، بدلاً من التخمين أو التأخير.
+                    ماذا تساوي بياناتك إذا لم تخبرك كيف تربح أكثر؟ نقدم لك  لوحات تحكم تفاعلية (Dashboards)  تحول قراءات الاستشعار إلى  مؤشرات أداء رئيسية (KPIs) . احصل على تنبيهات فورية عندما تكون التكلفة عالية أو الإنتاجية منخفضة، لتتخذ  قراراً فورياً يوفر آلاف الدولارات . 
                 </p>
             </div>
         </div>
@@ -261,61 +497,61 @@
 
 
     <section id="about" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">الرؤية الرقمية: خبراء في دمج الهاردوير والسوفتوير</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">الرؤية الرقمية: خبراء في دمج الهاردوير والسوفتوير (التحكم الكامل)</h2>
         <div class="about-flex">
             <div class="about-text reveal-item">
-                <h3>حول شركة الرؤية الرقمية: من الفكرة إلى الأتمتة الكاملة</h3>
+                <h3>لماذا يجب أن تختار شريكاً يتحكم في كل خطوة؟</h3>
                 <p class="muted">
-                    نحن متخصصون في تحويل التحديات التشغيلية المعقدة إلى **أنظمة ذكية متكاملة** تعمل بشكل تلقائي. مهمتنا تتجاوز مجرد تركيب الأجهزة؛ نحن نطور كل من المكونات المادية (الهاردوير) والمنصات السحابية (السوفتوير) لضمان التوافق الكامل والكفاءة القصوى.
+                    نحن متخصصون في تحويل التحديات التشغيلية المعقدة إلى  أنظمة ذكية متكاملة  تعمل بشكل تلقائي. مهمتنا تتجاوز مجرد تركيب الأجهزة؛ نحن نطور كل من المكونات المادية (الهاردوير) والمنصات السحابية (السوفتوير) لضمان التوافق الكامل والكفاءة القصوى.
                 </p>
                 <p class="muted">
-                    نغطي جميع مراحل المشروع: من رسم الدوائر الإلكترونية المطبوعة (PCB) إلى نشر النظام على السحابة (Cloud Deployment). هذه الخبرة المتكاملة تضمن لك نظاماً موثوقاً وقابلاً للتوسع، يقلل من **التكاليف التشغيلية** ويحسن **كفاءة العمليات**.
+                    نغطي جميع مراحل المشروع: من رسم الدوائر الإلكترونية المطبوعة ( PCB ) إلى نشر النظام على السحابة ( Cloud Deployment ). هذه الخبرة المتكاملة تضمن لك نظاماً موثوقاً وقابلاً للتوسع، يقلل من  التكاليف التشغيلية  ويحسن  كفاءة العمليات .  الأهم:  لن تجد أي نقل مسؤولية بين مبرمج ومهندس، فالفريق واحد.
                 </p>
                 <ul class="muted" style="padding-right:20px;">
-                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **تطوير متكامل:** نجمع بين تصميم الأجهزة المادية والبرمجة السحابية في مكان واحد.</li>
-                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **هندسة موثوقة:** استخدام لغات برمجة متقدمة (C++/Arduino) لضمان أداء الأجهزة بسرعة ودقة عالية.</li>
-                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i> **أمان وقابلية توسع:** بناء قنوات اتصال مشفرة وموثوقة لتحمل النمو المستقبلي لبياناتك.</li>
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i>  تطوير متكامل:  نجمع بين تصميم الأجهزة المادية والبرمجة السحابية في مكان واحد.</li>
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i>  هندسة موثوقة:  استخدام لغات برمجة متقدمة (C++/Arduino) لضمان أداء الأجهزة بسرعة ودقة عالية.</li>
+                    <li><i class="fa-solid fa-check" style="color:var(--accent);margin-left:10px"></i>  أمان وقابلية توسع:  بناء قنوات اتصال مشفرة وموثوقة لتحمل النمو المستقبلي لبياناتك.</li>
                 </ul>
             </div>
             <div class="founder-card reveal-item" style="transition-delay:0.2s">
                 <img src="founder.jpg" alt="Ayman Abdullah Ziad">
                 <h4>أيمن عبدالله زياد</h4>
-                <h4 style="font-size:16px; font-weight:600; color:var(--accent); margin-top:5px;">Ayman Abdullah Ziad</h4> 
+                <h4 style="font-size:18px; font-weight:700; color:var(--accent); margin-top:5px; text-shadow: 0 0 15px rgba(0, 255, 255, 1);">Ayman Abdullah Ziad</h4> 
                 <p>مؤسس ومدير الأنظمة | مهندس IoT</p>
-                <a href="#contact" class="btn-primary" style="margin-top:15px;display:block">تواصل مع المؤسس مباشرة</a>
+                <a href="#contact" class="btn-primary" style="margin-top:20px;display:block">احجز موعداً مع المؤسس مباشرة</a>
             </div>
         </div>
     </section>
 
 
     <section id="projects" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">مشاريعنا: حلول ذكية تم تنفيذها بنجاح</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">مشاريعنا: كيف حولنا التحديات إلى أتمتة مربحة لعملائنا</h2>
         <div class="project-grid">
             
             <div class="project-item reveal-item">
                 <img src="project2.jpg" alt="نظام قياس الحرارة والرطوبة وحفظ البيانات">
                 <div class="project-info">
-                    <h4>مراقبة البيئة الذكية وحفظ السجلات</h4>
-                    <p>**الوصف:** نظام يقيس **درجة الحرارة والرطوبة** ويخزن البيانات تلقائياً في السحابة كل وقت محدد، مع إمكانية توليد تقارير يومية، أسبوعية، وشهرية دقيقة.</p>
-                    <p>**يفيد في:** **حماية المخزون والمنتجات الحساسة** في المستودعات والمزارع وغرف التبريد، حيث يضمن النظام الالتزام بالمعايير البيئية المطلوبة لتجنب التلف والخسائر.</p>
+                    <h4>🚨  إنقاذ المنتجات الحساسة من التلف بخطأ بشري  (مراقبة حرارة ورطوبة) </h4>
+                    <p class="p-problem">  المشكلة التي حُلت:  كانت المراقبة يدوية، مما عرض  مخزوناً بقيمة كبيرة  لخطر التلف بسبب خطأ واحد في القراءة أو تأخر في الاستجابة.</p>
+                    <p>  القيمة المضافة:  نظام آلي يرسل  تنبيهات فورية  عند تجاوز أي حد، ويوفر  سجلات موثقة رقمياً 100%  للامتثال للمعايير.  النتيجة: أمان كامل للمخزون، وتوفير تكاليف الخسائر.  </p>
                 </div>
             </div>
             
             <div class="project-item reveal-item" style="transition-delay:0.1s">
                 <img src="project1.jpg" alt="مشروع الموقف الذكي للسيارات">
                 <div class="project-info">
-                    <h4>نظام إدارة المواقف الذكي والتحكم في البوابات</h4>
-                    <p>**الوصف:** نظام متكامل لموقف السيارات يتيح **التحكم في البوابة عن بعد** من أي مكان في العالم، بالإضافة إلى معرفة دقيقة **لعدد المواقف الفارغة والممتلئة** في الوقت الفعلي.</p>
-                    <p>**يفيد في:** **تحسين كفاءة مواقف الشركات والمجمعات السكنية** من خلال تسهيل الدخول والخروج، وإدارة استغلال المواقف بكفاءة عالية وتقليل الازدحام.</p>
+                    <h4>🚗  إنهاء الازدحام والفوضى:  نظام إدارة المواقف الذكي والتحكم في البوابات </h4>
+                    <p class="p-problem">  المشكلة التي حُلت:  ازدحام مستمر في المواقف وصعوبة في التحكم بالدخول والخروج، مما أدى إلى  إهدار وقت الموظفين وزيادة شكاوى العملاء.  </p>
+                    <p>  القيمة المضافة:  نظام متكامل يتيح  التحكم في البوابة عن بعد  ومعرفة دقيقة  لعدد المواقف الفارغة والممتلئة  في الوقت الفعلي.  النتيجة: تحسين كفاءة المواقف بنسبة 30%  وتقليل الحاجة إلى موظفي استقبال.</p>
                 </div>
             </div>
             
             <div class="project-item reveal-item" style="transition-delay:0.2s">
                 <img src="project4.jpg" alt="روبوت متحرك بذراع آلية">
                 <div class="project-info">
-                    <h4>روبوت متحرك بذراع آلية للتحكم عن بعد</h4>
-                    <p>**الوصف:** تطوير روبوت متحرك ومزود **بذراع آلية متقدمة** يتم التحكم بها بالكامل عن بعد من خلال متصفح الويب على الهاتف الذكي أو الحاسوب.</p>
-                    <p>**يفيد في:** **تنفيذ مهام المراقبة والفحص والتعامل مع المواد** في البيئات الخطرة أو التي يصعب الوصول إليها، مما يضمن سلامة الأفراد ومرونة العمليات.</p>
+                    <h4>☢️  روبوت متحرك بذراع آلية للتحكم عن بعد  (مهام البيئات الخطرة) </h4>
+                    <p class="p-problem">  المشكلة التي حُلت:  الحاجة إلى  إجراء فحوصات أو التعامل مع مواد خطرة  في بيئات تهدد سلامة الموظفين أو يصعب الوصول إليها مادياً.</p>
+                    <p>  القيمة المضافة:  تطوير روبوت يتحرك ويُتحكم بذراعه الآلية بالكامل عبر الويب.  النتيجة: ضمان سلامة الأفراد بنسبة 100%  ومرونة عالية لتنفيذ مهام المراقبة والفحص عن بُعد.</p>
                 </div>
             </div>
 
@@ -323,23 +559,23 @@
              <div class="project-item reveal-item" style="transition-delay:0.3s">
                 <img src="project3.jpg" alt="مشروع الباب الذكي باستخدام البطاقات الذكية">
                 <div class="project-info">
-                    <h4>نظام التحكم الذكي بالوصول (الباب الذكي)</h4>
-                    <p>**الوصف:** باب ذكي يتيح الدخول والخروج عبر **البطائق الذكية (RFID)**، مع تسجيل دقيق لجميع حركات الفتح والإغلاق وتحديد هوية المستخدم في كل مرة.</p>
-                    <p>**يفيد في:** **زيادة الأمان والتحكم في الوصول** للمناطق الحساسة في الشركات والمختبرات والمنازل، وتوفير سجل دقيق لأوقات دخول وخروج الموظفين أو الأفراد.</p>
+                    <h4>🔐  زيادة أمان المنشأة:  نظام التحكم الذكي بالوصول (الباب الذكي) </h4>
+                    <p class="p-problem">  المشكلة التي حُلت:  صعوبة تتبع من يدخل ويخرج من المناطق الحساسة، والحاجة إلى  سجل دقيق وموثوق  لحركات الموظفين.</p>
+                    <p>  القيمة المضافة:  باب ذكي يتيح الدخول والخروج عبر  البطائق الذكية (RFID) ، مع تسجيل دقيق لجميع حركات الفتح والإغلاق وتحديد هوية المستخدم.  النتيجة: أمان مضاعف للمناطق الحساسة  وتوفير تقارير دقيقة لأوقات دخول وخروج الموظفين.</p>
                 </div>
             </div>
         </div>
         <div class="text-center reveal-item" style="margin-top:40px;">
-            <a href="#contact" class="cta-secondary">لدي مشروع مشابه؟ تواصل معنا للتنفيذ</a>
+            <a href="#contact" class="cta-secondary">لديك تحدٍ تشغيلي مشابه؟ تواصل معنا لتجنب المزيد من الخسائر الآن! </a>
         </div>
     </section>
 
 
     <section id="contact" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">لنتحدث عن مشروعك التالي: استشر الخبراء اليوم</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:40px;">💡  هل لديك مشكلة ملحة؟  لنحولها إلى حل مربح:  احجز استشارتك المجانية اليوم!  </h2>
         <div class="contact-grid">
             <div class="form-card reveal-item">
-                <h3>اطلب استشارة مجانية وعرض سعر</h3>
+                <h3>اطلب استشارة مجانية وعرض سعر (بدون أي التزام)</h3>
                 <form id="contactForm">
                     <label for="name">الاسم الكامل</label>
                     <input id="name" name="name" required placeholder="مثال: خالد محمد" />
@@ -348,15 +584,15 @@
                     <label for="email">البريد الإلكتروني</label>
                     <input id="email" name="email" type="email" placeholder="khalid@mail.com" required/>
                     
-                    <label for="subject">موضوع الرسالة (نوع المشروع)</label>
+                    <label for="subject">موضوع الرسالة (نوع المشكلة التي تريد حلها)</label>
                     <input id="subject" name="subject" placeholder="مثال: نظام مراقبة مزرعة / أتمتة منزل" required/>
 
 
-                    <label for="message">تفاصيل المشروع/الرسالة</label>
-                    <textarea id="message" name="message" rows="5" placeholder="صف بإيجاز ما هي المشكلة التي تريد حلها أو الحل الذي تبحث عنه." required></textarea>
+                    <label for="message">تفاصيل التحدي/المشكلة</label>
+                    <textarea id="message" name="message" rows="5" placeholder="صف تحديك بوضوح (مثال: أريد مراقبة مستوى الوقود عن بعد لـ 50 خزان)، وسيقوم فريقنا بإعداد مقترح أولي موجه للحل قبل أي التزام مالي." required></textarea>
 
 
-                    <button type="submit" class="submit btn-primary">إرسال الطلب</button>
+                    <button type="submit" class="submit btn-primary">📧 إرسال طلب الاستشارة وبدء رحلة الأتمتة</button>
                 </form>
             </div>
             <div class="contact-info-block reveal-item" style="transition-delay:0.2s">
@@ -373,8 +609,8 @@
                     <i class="fa-solid fa-location-dot"></i>
                     <strong>الموقع:</strong> اليمن | خدماتنا تغطي منطقة الشرق الأوسط (عن بعد)
                 </p>
-                <hr style="border-color:var(--glass);margin:25px 0">
-                <p class="muted" style="font-size:14px;display:block;margin:0">نحن متواجدون للرد على استفساراتكم خلال ساعات العمل الرسمية. لا تتردد في التواصل لبدء نقاش حول كيفية تحقيق أهدافك التقنية.</p>
+                <hr style="border-color:rgba(0,255,255,0.3);margin:30px 0">
+                <p class="muted" style="font-size:15px;display:block;margin:0">نحن متواجدون للرد على استفساراتكم خلال ساعات العمل الرسمية. لا تتردد في التواصل لبدء نقاش حول كيفية تحقيق أهدافك التقنية وتوفير التكاليف التشغيلية. </p>
             </div>
         </div>
     </section>
@@ -385,25 +621,42 @@
     </footer>
 
 
-  </main>
-
-
   <a id="whatsappFloat" class="whatsapp-float" href="https://wa.me/967777752638" target="_blank" aria-label="تواصل عبر واتساب">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+  
   <script>
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
 
+    // 💡 تشغيل تأثير Vanta.js - Net effect 💡
+    VANTA.NET({
+      el: "#vanta-bg", 
+      mouseControls: false,
+      touchControls: true,
+      minHeight: 50.00,
+      minWidth: 50.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x00ffff, // لون العقد (أزرق سيان)
+      backgroundColor: 0x000000, // خلفية سوداء لتباين أعلى
+      points: 12.00, /* زيادة عدد النقاط */
+      maxDistance:5.00, /* زيادة مدى الاتصال بين النقاط */
+      spacing: 15.00 /* زيادة كثافة النقاط */
+    })
+    
+    
     // Scroll Reveal Animation (Improved visibility threshold)
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){e.target.classList.add('visible')}
       })
-    },{threshold:0.1}); // Trigger when 10% of element is visible
+    },{threshold:0.1}); 
     document.querySelectorAll('.reveal-item').forEach(el=>observer.observe(el));
 
 
@@ -431,4 +684,3 @@
 </body>
 
 </html>
-
