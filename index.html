@@ -373,16 +373,26 @@
     }
     .form-card h3{color:var(--text-light);text-shadow: var(--neon-glow);}
     .form-card label{display:block;margin-bottom:10px;font-weight:700;color:var(--text-light);font-size:16px;}
-    .form-card input, .form-card textarea{
+    .form-card input, .form-card textarea, .form-card select {
       width:100%;padding:15px;border-radius:10px;border:2px solid rgba(0, 255, 255, 0.6);
       background:rgba(255,255,255,0.05);color:var(--text-light);margin-bottom:20px;transition:border-color var(--transition);
       font-family:'Cairo', sans-serif;
       font-size:16px;
     }
-    .form-card input::placeholder, .form-card textarea::placeholder { 
+    .form-card select {
+        font-weight: 1000; /* لجعل الخط داخل القائمة المنسدلة غامقاً */
+       color: var(--text-light); /* تم التعديل: توحيد لون الخط مع باقي الحقول */
+    }
+    /* ⭐ تم التعديل: تغيير خلفية الخيارات داخل القائمة المنسدلة إلى الأسود ⭐ */
+    .form-card select option {
+        background: #080042;
+        color: var(--text-light);
+     
+    }
+    .form-card input::placeholder, .form-card textarea::placeholder {
         color: rgba(167, 217, 247, 0.7);
     }
-    .form-card input:focus, .form-card textarea:focus{
+    .form-card input:focus, .form-card textarea:focus, .form-card select:focus {
         outline:none;
         border-color:var(--accent);
         box-shadow:0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(57, 255, 20, 0.8);
@@ -707,12 +717,49 @@
                     <label for="name">الاسم الكامل</label>
                     <input type="text" id="name" name="name" placeholder="الاسم الكامل" required>
                     
-                    <input type="hidden" name="_subject" value="رسالة جديدة من موقع الرؤية الرقمية!">
-                    <!-- السطر التالي يقوم بتعطيل صفحة الـ CAPTCHA الإجبارية من FormSubmit -->
-                    <input type="hidden" name="_captcha" value="false">
+
+                    <label for="company">اسم الشركة / المنشأة</label>
+                    <input type="text" id="company" name="company" placeholder="اسم شركتك أو منشأتك" required>
+
+                    <label for="phone">رقم الهاتف</label>
+                    <!-- تم التعديل: إضافة pattern للتحقق من صحة الرقم ورسالة خطأ مخصصة -->
+                    <input type="tel" id="phone" name="phone" placeholder="777777777" required style="text-align: right;" 
+                           pattern="[7][0-9]{8}" 
+                           title="الرجاء إدخال رقم هاتف يمني صحيح مكون من 9 أرقام ويبدأ بالرقم 7">
 
                     <label for="email">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" required>
+
+                    <label for="governorate">المحافظة</label>
+                    <select id="governorate" name="governorate" required>
+                        <option value="" disabled selected>اختر محافظتك...</option>
+                        <option value="أمانة العاصمة">أمانة العاصمة</option>
+                        <option value="صنعاء">صنعاء</option>
+                       <option value="ذمار">ذمار</option>
+                        <option value="عدن">عدن</option>
+                        <option value="حضرموت">حضرموت</option>
+                        <option value="تعز">تعز</option>
+                        <option value="الحديدة">الحديدة</option>
+                        <option value="إب">إب</option>
+                        <option value="حجة">حجة</option>
+                        <option value="صعدة">صعدة</option>
+                        <option value="المحويت">المحويت</option>
+                        <option value="عمران">عمران</option>
+                        <option value="البيضاء">البيضاء</option>
+                        <option value="الجوف">الجوف</option>
+                        <option value="مأرب">مأرب</option>
+                        <option value="أبين">أبين</option>
+                        <option value="لحج">لحج</option>
+                        <option value="الضالع">الضالع</option>
+                        <option value="شبوة">شبوة</option>
+                        <option value="المهرة">المهرة</option>
+                        <option value="ريمة">ريمة</option>
+                        <option value="أرخبيل سقطرى">أرخبيل سقطرى</option>
+                    </select>
+
+                    <input type="hidden" name="_subject" value="رسالة جديدة من موقع الرؤية الرقمية!">
+                    <!-- ⭐ تم التعديل: إضافة حقل مخفي لإعلام FormSubmit باستخدام reCAPTCHA -->
+                    <input type="hidden" name="_recaptcha" value="">
 
                     <label for="subject">موضوع الرسالة (نوع المشكلة التي تريد حلها)</label>
                     <input type="text" id="subject" name="subject" placeholder="مثال: تحدي استهلاك الطاقة في المصنع" required>
@@ -720,6 +767,11 @@
                     <label for="message">تفاصيل التحدي/المشكلة</label>
                     <textarea id="message" name="message" rows="5" placeholder="شرح موجز للتحدي الذي تواجهه وكيف يمكن أن نساعد." required></textarea>
                     
+                    <!-- ⭐ تم التعديل: إضافة عنصر reCAPTCHA هنا -->
+                    <!-- تم التعديل: استخدام مفتاح reCAPTCHA التجريبي الرسمي من Google -->
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-bottom: 20px;"></div>
+                    <div class="g-recaptcha" data-sitekey="ضع_مفتاح_الموقع_الخاص_بك_هنا" style="margin-bottom: 20px;"></div>
+
                   
                     <button type="submit" class="btn-primary submit">📧 إرسال طلب الاستشارة وبدء رحلة الأتمتة</button>
                   
@@ -764,6 +816,9 @@
       <p class="text-gray-400 text-sm">&copy; 2025 شركة الرؤية الرقمية — Digital Vision. جميع الحقوق محفوظة.</p>
       <p class="text-xs mt-2 text-cyan-600">القوة تكمن في البيانات، والتحكم يكمن في الأتمتة.</p>
   </footer>
+
+  <!-- ⭐ تم التعديل: إضافة سكربت Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.waves.min.js"></script>
@@ -942,14 +997,20 @@
                     }
                 });
 
-                if (response.ok) {
+                const contentType = response.headers.get('content-type');
+                if (response.ok && contentType && contentType.includes('application/json')) {
+                    // الحالة المثالية: الإرسال نجح والخادم رد بـ JSON
+                    await response.json(); // نقرأ الرد للتأكيد
                     showNotification('✅ تم استلام طلبك بنجاح! سنتواصل معك قريباً.', 'success');
                     form.reset(); // مسح حقول النموذج
                 } else {
-                    throw new Error('فشل إرسال النموذج');
+                    // حالة الخطأ: إما أن الرد ليس ناجحاً، أو أنه صفحة HTML بدلاً من JSON
+                    // هذا يمنع خطأ "Unexpected token" بشكل كامل
+                    const errorText = await response.text();
+                    throw new Error('فشل الإرسال. قد يتطلب النموذج تفعيل CAPTCHA أو هناك خطأ في الإعدادات.');
                 }
             } catch (error) {
-                showNotification('❌ حدث خطأ ما. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.', 'error');
+                showNotification(`❌ ${error.message}`, 'error');
             } finally {
                 // إعادة الزر إلى حالته الأصلية
                 submitButton.innerHTML = originalButtonText;
