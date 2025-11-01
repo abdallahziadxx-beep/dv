@@ -378,21 +378,18 @@
       background:rgba(255,255,255,0.05);color:var(--text-light);margin-bottom:20px;transition:border-color var(--transition);
       font-family:'Cairo', sans-serif;
       font-size:16px;
+      /* توحيد مظهر حقل الاختيار مع باقي الحقول */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ffff'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 15px center;
     }
-    .form-card select {
-        font-weight: 1000; /* لجعل الخط داخل القائمة المنسدلة غامقاً */
-       color: var(--text-light); /* تم التعديل: توحيد لون الخط مع باقي الحقول */
-    }
-    /* ⭐ تم التعديل: تغيير خلفية الخيارات داخل القائمة المنسدلة إلى الأسود ⭐ */
-    .form-card select option {
-        background: #080042;
-        color: var(--text-light);
-     
-    }
-    .form-card input::placeholder, .form-card textarea::placeholder {
+    .form-card input::placeholder, .form-card textarea::placeholder { 
         color: rgba(167, 217, 247, 0.7);
     }
-    .form-card input:focus, .form-card textarea:focus, .form-card select:focus {
+    .form-card input:focus, .form-card textarea:focus{
         outline:none;
         border-color:var(--accent);
         box-shadow:0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(57, 255, 20, 0.8);
@@ -404,21 +401,40 @@
 
     /* 9. Utility & Footer */
     .text-center{text-align:center}
-    /* 💥 تم استرجاع زر الواتساب العائم */
-    .whatsapp-float{
-        position:fixed;right:30px;bottom:30px; 
-        background:var(--whatsapp-color); 
-        width:75px;height:75px;
+    /* 💥 حاوية الأزرار العائمة (واتساب، اتصال، رسائل) */
+    .floating-action-buttons {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* مسافة بين الأزرار */
+        z-index: 99;
+    }
+    .fab-button {
+        width: 65px;
+        height: 65px;
         border-radius:50%;
         display:flex;align-items:center;justify-content:center;
         color:white;
-        box-shadow:0 15px 50px rgba(0,0,0,1), 0 0 40px rgba(57, 255, 20, 1.2);
-        z-index:90;font-size:40px; 
+        font-size:30px; 
         transition:all .3s;
+        text-decoration: none;
     }
-    .whatsapp-float:hover{
-        transform:scale(1.3) rotate(10deg);
-        box-shadow:0 15px 70px rgba(0,0,0,1), 0 0 70px rgba(57, 255, 20, 2);
+    .fab-button:hover {
+        transform: scale(1.15);
+    }
+    .whatsapp-fab {
+        background: linear-gradient(45deg, #25D366, #128C7E);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+    .sms-fab {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+    }
+    .call-fab {
+        background: linear-gradient(45deg, #ff8c00, #c56a00);
+        box-shadow: 0 8px 25px rgba(255, 140, 0, 0.5);
     }
 
 
@@ -433,35 +449,46 @@
     /* ------------------------------------- */
     /* 10. Responsiveness */
     /* ------------------------------------- */
-    @media(max-width:1024px){
-        .about-flex{flex-direction:column;text-align:center;}
-        .founder-card{margin:30px auto 0 auto;}
-        .contact-grid{grid-template-columns:1fr}
-        .hero-title{font-size:55px;}
-        .stats-bar{flex-wrap:wrap;justify-content:space-around}
-        .stat{flex-basis:45%;border-right:none;padding:0;}
+    /* Mobile First Styles (Base) */
+    .container { padding: 0 15px; }
+    .section-spacing { padding: 60px 0; }
+    .nav-links { display: none; } /* Hidden on mobile, needs a hamburger menu to be useful */
+    .hero-section { padding: 80px 0 60px 0; }
+    .hero-title { font-size: 36px; }
+    .cta-row { flex-direction: column; }
+    .cta-row a { width: 100%; }
+    .stats-bar { gap: 20px; flex-wrap: wrap; justify-content: space-around; }
+    .stat { flex-basis: 100%; border-right: none; padding-left: 0; margin-bottom: 25px; }
+    .tech-logos { font-size: 18px; }
+    .about-flex { flex-direction: column; text-align: center; }
+    .founder-card { margin: 30px auto 0 auto; }
+    .project-grid { gap: 15px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-info-block p { font-size: 16px; gap: 12px; }
+    .contact-info-block p i { font-size: 22px; width: 26px; }
+    .form-card input, .form-card textarea { padding: 13px; font-size: 15px; }
+    .form-card .submit { font-size: 17px; padding: 13px 22px; }
+    .floating-action-buttons { right: 20px; bottom: 20px; gap: 12px; }
+    .fab-button { width: 60px; height: 60px; font-size: 28px; }
+
+    /* Tablet Styles */
+    @media(min-width: 768px) {
+      .container { padding: 0 24px; }
+      .nav-links { display: flex; }
+      .hero-title { font-size: 45px; }
+      .cta-row { flex-direction: row; }
+      .cta-row a { width: auto; }
+      .stat { flex-basis: 45%; }
     }
-    @media(max-width:768px){
-        .nav-links{display:none}
-        .section-spacing{padding:60px 0;}
-        .hero-title{font-size:45px;}
-        .stat{margin-bottom:25px;}
-        .cta-row{flex-direction:column}
-        .cta-row a{width:100%}
-    }
-    @media(max-width:480px){
-        .container{padding:0 15px;}
-        .hero-section{padding:80px 0 60px 0;}
-        .hero-title{font-size:36px;}
-        .stats-bar{gap:20px;}
-        .stat{flex-basis:100%;}
-        .tech-logos{font-size:18px;}
-        .project-grid{gap:15px;}
-        .contact-info-block p{font-size:16px;gap:12px;}
-        .contact-info-block p i{font-size:22px;width:26px;}
-        .form-card input, .form-card textarea{padding:13px;font-size:15px;}
-        .form-card .submit{font-size:17px;padding:13px 22px;}
-        .whatsapp-float{width:65px;height:65px;font-size:35px;right:20px;bottom:20px;}
+
+    /* Desktop Styles */
+    @media(min-width: 1024px) {
+      .hero-title { font-size: 55px; }
+      .stats-bar { flex-wrap: nowrap; }
+      .stat { border-right: 2px solid rgba(0, 255, 255, 0.2); padding-left: 60px; }
+      .stat:last-child { border-right: none; }
+      .about-flex { flex-direction: row; text-align: right; } /* Assuming right-aligned text for RTL */
+      .contact-grid { grid-template-columns: 2fr 1fr; }
     }
   </style>
 
@@ -494,7 +521,7 @@
     <div class="container">
       <nav class="nav">
         <div class="brand">
-          <img src="logo.png" alt="شعار الرؤية الرقمية" class="logo">
+          <img src="logo.png" alt="شعار الرؤية الرقمية" class="logo" width="100" height="100">
           <div>
             <h1>الرؤية الرقمية</h1>
             <span>حلول IoT متقدمة</span>
@@ -625,7 +652,7 @@
         <div class="project-grid">
             
             <div class="project-item reveal-item">
-                <img src="https://via.placeholder.com/400x250/00bcd4/ffffff?text=Smart+Warehouse" alt="إنقاذ المنتجات الحساسة">
+                <img  <img src="project2.jpg"   alt="إنقاذ المنتجات الحساسة" loading="lazy" width="400" height="250">
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-temperature-three-quarters ml-2"></i> 🚨 إنقاذ المنتجات الحساسة من التلف بخطأ بشري (مراقبة حرارة ورطوبة)</h4>
                     <p class="p-problem">المشكلة التي حُلت: كانت المراقبة يدوية، مما عرض مخزوناً بقيمة كبيرة لخطر التلف بسبب خطأ واحد في القراءة أو تأخر في الاستجابة.</p>
@@ -636,7 +663,7 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.1s">
-                <img src="https://via.placeholder.com/400x250/00bcd4/ffffff?text=Smart+Parking" alt="نظام إدارة المواقف الذكي">
+                <img  src="project1.jpg"  alt="نظام إدارة المواقف الذكي" loading="lazy" width="400" height="250">
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-car ml-2"></i> 🚗 إنهاء الازدحام والفوضى: نظام إدارة المواقف الذكي والتحكم في البوابات</h4>
                     <p class="p-problem">المشكلة التي حُلت: ازدحام مستمر في المواقف وصعوبة في التحكم بالدخول والخروج، مما أدى إلى إهدار وقت الموظفين وزيادة شكاوى العملاء.</p>
@@ -647,7 +674,7 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.2s">
-                <img src="https://via.placeholder.com/400x250/00bcd4/ffffff?text=Robot+Arm" alt="روبوت متحرك بذراع آلية">
+                <img  src="project4.jpg"  alt="روبوت متحرك بذراع آلية" loading="lazy" width="400" height="250">
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-robot ml-2"></i> ☢️ روبوت متحرك بذراع آلية للتحكم عن بعد (مهام البيئات الخطرة)</h4>
                     <p class="p-problem">المشكلة التي حُلت: الحاجة إلى إجراء فحوصات أو التعامل مع مواد خطرة في بيئات تهدد سلامة الموظفين أو يصعب الوصول إليها مادياً.</p>
@@ -658,7 +685,7 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.3s">
-                <img src="https://via.placeholder.com/400x250/00bcd4/ffffff?text=Smart+Access" alt="نظام التحكم الذكي بالوصول">
+                <img  src="project3.jpg"  alt="نظام التحكم الذكي بالوصول" loading="lazy" width="400" height="250">
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-lock ml-2"></i> 🔐 زيادة أمان المنشأة: نظام التحكم الذكي بالوصول (الباب الذكي)</h4>
                     <p class="p-problem">المشكلة التي حُلت: صعوبة تتبع من يدخل ويخرج من المناطق الحساسة، والحاجة إلى سجل دقيق وموثوق لحركات الموظفين.</p>
@@ -694,10 +721,10 @@
             </div>
             
             <div class="founder-card reveal-item" style="transition-delay:0.1s">
-                <img src="https://via.placeholder.com/220x220/c814ff/ffffff?text=Ayman+Ziad" alt="صورة المؤسس أيمن عبدالله زياد">
-                <h4>أيمن عبدالله زياد</h4>
-                <p class="text-base text-gray-400">Ayman Abdullah Ziad</p>
-                <p class="text-sm">مؤسس ومدير الأنظمة | مهندس IoT</p>
+                src="founder.jpg"  alt="صورة المؤسس أيمن عبدالله زياد" loading="lazy" width="220" height="220">
+                <h4>Ayman Abdullah Ziad</h4>
+                <p class="text-base text-gray-400">D.V</p>
+                <p class="text-sm">مهندس IoT</p>
                 <a href="#contact" class="btn-primary" style="display:block;margin-top:20px;">احجز موعداً مع المؤسس مباشرة</a>
             </div>
         </div>
@@ -711,9 +738,8 @@
             
             <div class="form-card reveal-item">
                 <h3>اطلب استشارة مجانية وعرض سعر (بدون أي التزام)</h3>
-                <!-- تم تعديل الرابط لاستخدام خدمة FormSubmit.co -->
-                <!-- تمت إضافة id للنموذج للتحكم به عبر JavaScript -->
-                <form id="contact-form" action="https://formsubmit.co/aimanziadxxx@gmail.com" method="POST">
+                <!-- ✅ تم تعديل النموذج ليقوم بالإرسال عبر واتساب مباشرة -->
+                <form id="contact-form">
                     <label for="name">الاسم الكامل</label>
                     <input type="text" id="name" name="name" placeholder="الاسم الكامل" required>
                     
@@ -722,10 +748,7 @@
                     <input type="text" id="company" name="company" placeholder="اسم شركتك أو منشأتك" required>
 
                     <label for="phone">رقم الهاتف</label>
-                    <!-- تم التعديل: إضافة pattern للتحقق من صحة الرقم ورسالة خطأ مخصصة -->
-                    <input type="tel" id="phone" name="phone" placeholder="777777777" required style="text-align: right;" 
-                           pattern="[7][0-9]{8}" 
-                           title="الرجاء إدخال رقم هاتف يمني صحيح مكون من 9 أرقام ويبدأ بالرقم 7">
+                    <input type="tel" id="phone" name="phone" placeholder="777777777" required style="text-align: right;">
 
                     <label for="email">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" required>
@@ -757,21 +780,12 @@
                         <option value="أرخبيل سقطرى">أرخبيل سقطرى</option>
                     </select>
 
-                    <input type="hidden" name="_subject" value="رسالة جديدة من موقع الرؤية الرقمية!">
-                    <!-- ⭐ تم التعديل: إضافة حقل مخفي لإعلام FormSubmit باستخدام reCAPTCHA -->
-                    <input type="hidden" name="_recaptcha" value="">
-
                     <label for="subject">موضوع الرسالة (نوع المشكلة التي تريد حلها)</label>
                     <input type="text" id="subject" name="subject" placeholder="مثال: تحدي استهلاك الطاقة في المصنع" required>
                     
                     <label for="message">تفاصيل التحدي/المشكلة</label>
                     <textarea id="message" name="message" rows="5" placeholder="شرح موجز للتحدي الذي تواجهه وكيف يمكن أن نساعد." required></textarea>
                     
-                    <!-- ⭐ تم التعديل: إضافة عنصر reCAPTCHA هنا -->
-                    <!-- تم التعديل: استخدام مفتاح reCAPTCHA التجريبي الرسمي من Google -->
-                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-bottom: 20px;"></div>
-                    <div class="g-recaptcha" data-sitekey="ضع_مفتاح_الموقع_الخاص_بك_هنا" style="margin-bottom: 20px;"></div>
-
                   
                     <button type="submit" class="btn-primary submit">📧 إرسال طلب الاستشارة وبدء رحلة الأتمتة</button>
                   
@@ -781,8 +795,8 @@
             <div class="contact-info-block reveal-item" style="transition-delay:0.1s">
                 <h3>معلومات التواصل المباشر</h3>
                 <p><i class="fa-solid fa-envelope"></i> البريد الإلكتروني: aimanziadxxx@gmail.com</p>
-                <p><i class="fa-brands fa-whatsapp"></i> واتساب: +967 777 752 638</p>
-                <p><i class="fa-solid fa-location-dot"></i> الموقع: اليمن | خدماتنا تغطي منطقة الشرق الأوسط (عن بعد)</p>
+                <p><i class="fa-brands fa-whatsapp"></i>  واتساب 967777752638+</p>
+                <p><i class="fa-solid fa-location-dot"></i> الموقع: اليمن </p>
                 <p class="text-sm mt-4" style="line-height:1.5; color:var(--muted)">نحن متواجدون للرد على استفساراتكم خلال ساعات العمل الرسمية. لا تتردد في التواصل لبدء نقاش حول كيفية تحقيق أهدافك التقنية وتوفير التكاليف التشغيلية.</p>
                 <div style="margin-top:30px;">
                     <a href="https://wa.me/967777752638" target="_blank" class="btn-primary" style="width:100%;text-align:center;display:block;">تواصل واتساب مباشر</a>
@@ -806,9 +820,21 @@
   <!-- ⭐ عنصر الإشعار المضاف ⭐ -->
   <div id="notification"></div>
 
-  <a href="https://wa.me/967777752638" target="_blank" class="whatsapp-float">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+  <!-- ⭐ الأزرار العائمة للتواصل ⭐ -->
+  <div class="floating-action-buttons">
+    <!-- زر الاتصال المباشر -->
+    <a href="tel:+967777752638" class="fab-button call-fab" aria-label="اتصال مباشر">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+    <!-- زر رسائل SMS -->
+    <a href="sms:+967777752638" class="fab-button sms-fab" aria-label="إرسال رسالة SMS">
+        <i class="fa-solid fa-comment-sms"></i>
+    </a>
+    <!-- زر الواتساب -->
+    <a href="https://wa.me/967777752638" target="_blank" class="fab-button whatsapp-fab" aria-label="تواصل عبر واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
  
 
   <footer>
@@ -816,9 +842,6 @@
       <p class="text-gray-400 text-sm">&copy; 2025 شركة الرؤية الرقمية — Digital Vision. جميع الحقوق محفوظة.</p>
       <p class="text-xs mt-2 text-cyan-600">القوة تكمن في البيانات، والتحكم يكمن في الأتمتة.</p>
   </footer>
-
-  <!-- ⭐ تم التعديل: إضافة سكربت Google reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.waves.min.js"></script>
@@ -930,7 +953,7 @@
 
             contentTitle.textContent = selectedTab.title;
             contentBody.innerHTML = selectedTab.content;
-            contentImagePlaceholder.innerHTML = `<img src="${selectedTab.image}" alt="صورة حلول ${selectedTab.id}" class="rounded-lg shadow-lg border border-cyan-500/50 transform hover:scale-105 transition-transform duration-300 w-full h-auto max-h-80 object-cover mx-auto glow-shadow">`;
+            contentImagePlaceholder.innerHTML = `<img src="${selectedTab.image}" alt="صورة حلول ${selectedTab.id}" class="rounded-lg shadow-lg border border-cyan-500/50 transform hover:scale-105 transition-transform duration-300 w-full h-auto max-h-80 object-cover mx-auto glow-shadow" loading="lazy" width="400" height="225">`;
         }
 
         function handleTabClick(event) {
@@ -986,36 +1009,47 @@
             submitButton.innerHTML = 'الرجاء الانتظار... <i class="fa-solid fa-spinner fa-spin"></i>';
             submitButton.disabled = true;
 
-            const formData = new FormData(form);
+            // --- بداية الكود الجديد للإرسال عبر واتساب ---
 
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+            // 1. قراءة البيانات من الحقول
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const governorate = document.getElementById('governorate').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
 
-                const contentType = response.headers.get('content-type');
-                if (response.ok && contentType && contentType.includes('application/json')) {
-                    // الحالة المثالية: الإرسال نجح والخادم رد بـ JSON
-                    await response.json(); // نقرأ الرد للتأكيد
-                    showNotification('✅ تم استلام طلبك بنجاح! سنتواصل معك قريباً.', 'success');
-                    form.reset(); // مسح حقول النموذج
-                } else {
-                    // حالة الخطأ: إما أن الرد ليس ناجحاً، أو أنه صفحة HTML بدلاً من JSON
-                    // هذا يمنع خطأ "Unexpected token" بشكل كامل
-                    const errorText = await response.text();
-                    throw new Error('فشل الإرسال. قد يتطلب النموذج تفعيل CAPTCHA أو هناك خطأ في الإعدادات.');
-                }
-            } catch (error) {
-                showNotification(`❌ ${error.message}`, 'error');
-            } finally {
-                // إعادة الزر إلى حالته الأصلية
-                submitButton.innerHTML = originalButtonText;
-                submitButton.disabled = false;
-            }
+            // 2. رقم الواتساب المستهدف (بدون + أو 00)
+            const whatsappNumber = '967777752638';
+
+            // 3. تنسيق الرسالة
+            const whatsappMessage = `
+*طلب استشارة جديد من موقع الرؤية الرقمية* 🚀
+-----------------------------------
+*الاسم الكامل:* ${name}
+*الشركة/المنشأة:* ${company}
+*رقم الهاتف:* ${phone}
+*البريد الإلكتروني:* ${email}
+*المحافظة:* ${governorate}
+-----------------------------------
+*موضوع الرسالة:*
+${subject}
+
+*تفاصيل التحدي:*
+${message}
+            `.trim();
+
+            // 4. إنشاء رابط واتساب وتشفير الرسالة
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // 5. فتح الرابط في نافذة جديدة وتحديث الواجهة
+            window.open(whatsappUrl, '_blank');
+            showNotification('✅ تم تجهيز رسالتك! اضغط "إرسال" في واتساب.', 'success');
+            form.reset();
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
         }
 
         function showNotification(message, type) {
