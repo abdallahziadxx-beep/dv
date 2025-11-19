@@ -335,7 +335,8 @@
         background: #000;
     }
     .project-media-container iframe,
-    .project-media-container img {
+    .project-media-container img,
+    .project-media-container video { /* ⚠️ تم إضافة وسم "video" هنا ⚠️ */
         position: absolute;
         top: 0;
         left: 0;
@@ -671,13 +672,17 @@
 
             <div class="project-item reveal-item" style="transition-delay:0.1s">
                 <div class="project-media-container">
-                    <iframe 
-                        src="project5.mp4" 
-                        title="Embedded YouTube Video Example" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <video 
+                        controls 
+                        loop 
+                        muted 
+                        autoplay 
+                        playsinline 
+                        poster="local_video_poster.jpg"
+                        title="فيديو مشروع محلي">
+                        <source src="project5.mp4" type="video/mp4">
+                        متصفحك لا يدعم وسم الفيديو.
+                    </video>
                 </div>
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-car ml-2"></i> 🚗 إنهاء الازدحام والفوضى: نظام إدارة المواقف الذكي والتحكم في البوابات</h4>
@@ -1048,5 +1053,4 @@ ${message}
   </script>
 
 </body>
-</html>
-
+  </html>
