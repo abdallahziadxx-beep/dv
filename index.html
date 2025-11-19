@@ -325,7 +325,28 @@
         box-shadow:0 0 50px rgba(0, 255, 255, 0.8), 0 25px 60px rgba(0,0,0,1);
         border-color:var(--accent);
     }
-    .project-item img{width:100%;height:250px;object-fit:cover;display:block;}
+
+    /* 🆕 تنسيق حاوية الوسائط (للفيديو والصور) لضمان التجاوب 🆕 */
+    .project-media-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio (56.25% من العرض) */
+        height: 0;
+        overflow: hidden;
+        background: #000;
+    }
+    .project-media-container iframe,
+    .project-media-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* لضمان ملء الصورة أو الفيديو للحاوية */
+        display: block;
+        /* لجعل الفيديو أو الصورة تأخذ زوايا دائرية علوية مثل تصميم بطاقة المشروع */
+        border-radius: var(--radius) var(--radius) 0 0; 
+    }
+    
     .project-info{padding:25px}
     .project-info h4{
         margin:0 0 15px 0;
@@ -459,6 +480,7 @@
     .cta-row a { width: 100%; }
     .stats-bar { gap: 20px; flex-wrap: wrap; justify-content: space-around; }
     .stat { flex-basis: 100%; border-right: none; padding-left: 0; margin-bottom: 25px; }
+    .stat-number { font-size: 52px; }
     .tech-logos { font-size: 18px; }
     .about-flex { flex-direction: column; text-align: center; }
     .founder-card { margin: 30px auto 0 auto; }
@@ -547,101 +569,85 @@
             التحكم المطلق بين يديك <br> <span class="text-white">ليس حلماً، بل حقيقة اليوم!</span>
         </h1>
         <p class="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto mb-10 font-light">
-            نحن نحول الأنظمة التشغيلية المعقدة إلى <strong>حلول إنترنت أشياء (IoT) قابلة للبناء الآن</strong>، تضمن لك التحكم الكامل، المراقبة اللحظية، وتحقيق توفيرات ضخمة في الوقت والمال والجهد.
+            نحن نحول الأنظمة التشغيلية المعقدة إلى <strong>حلول إنترنت أشياء (IoT) قابلة للبناء الآن</strong>، تضمن لك التحكم الكامل، وتقدم لك بيانات دقيقة تبني عليها قراراتك لخفض التكلفة وزيادة الكفاءة.
         </p>
-      
- 
-      <h2 class="hero-title reveal-item">🎯  توقف عن إهدار الموارد!  نحن نحول تحدياتك التشغيلية إلى أنظمة ذكية تحقق توفيرات كبرى وأتمتة كاملة. </h2>
-      <p class="hero-desc reveal-item">هل سئمت من العمليات اليدوية، الأخطاء البشرية، وفواتير التشغيل المرتفعة؟ خبرتنا في  IoT  لا تقتصر على الأجهزة، بل تضمن لك  مراقبة وتحكم عن بُعد بلا انقطاع ، و  تقارير دقيقة  تبني عليها قراراتك لخفض التكلفة وزيادة الكفاءة.</p>
-      <div class="cta-row reveal-item">
-        <a class="btn-primary" href="#contact">💰  احجز استشارتك المجانية:  لنرسم خطة مشروعك لحل تحدٍ محدد! <i class="fa-solid fa-arrow-left"></i></a>
-        <a class="cta-secondary" href="#projects">كيف حقق عملاؤنا توفيرات كبيرة؟</a>
-      </div>
-
-
-      <div class="stats-bar reveal-item">
-          <div class="stat">
-              <div class="stat-number">2+</div>
-              <div class="stat-label">سنوات خبرة موثقة</div>
-          </div>
-          <div class="stat">
-              <div class="stat-number">10+</div>
-              <div class="stat-label">مشروع ناجح ومربح</div>
-          </div>
-        
-      </div>
-      <div class="tech-logos reveal-item">
-          <i class="fa-solid fa-microchip"></i>  ESP32  <i class="fa-solid fa-wifi"></i>  MQTT  <i class="fa-solid fa-cloud"></i>   IoT  <i class="fa-solid fa-gauge"></i>         IC  
-      </div>
-
-
+        <div class="cta-row reveal-item">
+            <a class="btn-primary" href="#contact">💰 احجز استشارتك المجانية: لنرسم خطة مشروعك لحل تحدٍ محدد! <i class="fa-solid fa-arrow-left"></i></a>
+            <a class="cta-secondary" href="#projects">كيف حقق عملاؤنا توفيرات كبيرة؟</a>
+        </div>
+        <div class="stats-bar reveal-item">
+            <div class="stat">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">سنوات خبرة موثقة</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">مشروع ناجح ومربح</div>
+            </div>
+        </div>
+        <div class="tech-logos reveal-item">
+            <i class="fa-solid fa-microchip"></i> ESP32 <i class="fa-solid fa-wifi"></i> MQTT <i class="fa-solid fa-cloud"></i> IoT <i class="fa-solid fa-gauge"></i> IC
+        </div>
     </section>
-     
-    <section id="services-tabs" class="mb-24 section-spacing">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 hero-title-gradient">
-            4 قطاعات، حلول متكاملة: اضغط لاكتشاف الآلية والقيمة
-        </h2>
 
+    <section id="services-tabs" class="mb-24 section-spacing">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 hero-title-gradient"> 4 قطاعات، حلول متكاملة: اضغط لاكتشاف الآلية والقيمة </h2>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
             
             <button data-id="smart-hospitals" class="tab-button active card-bg p-6 rounded-xl text-center glow-shadow">
-                <i class="fas fa-hospital text-4xl mb-2"></i>
+                <i class="fas fa-hospital text-4xl mb-2"></i> 
                 <p class="text-lg font-bold">1️⃣ المستشفيات الذكية</p>
                 <p class="text-sm">كل ثانية = حياة ومال مهدور</p>
             </button>
-
             <button data-id="smart-homes" class="tab-button card-bg p-6 rounded-xl text-center glow-shadow">
-                <i class="fas fa-house-chimney text-4xl mb-2"></i>
+                <i class="fas fa-house-chimney text-4xl mb-2"></i> 
                 <p class="text-lg font-bold">2️⃣ المنازل الذكية</p>
                 <p class="text-sm">حياتك في بيتك تتحول لتجربة هادئة</p>
             </button>
-
             <button data-id="smart-companies" class="tab-button card-bg p-6 rounded-xl text-center glow-shadow">
-                <i class="fas fa-building text-4xl mb-2"></i>
+                <i class="fas fa-building text-4xl mb-2"></i> 
                 <p class="text-lg font-bold">3️⃣ الشركات والمصانع الذكية</p>
                 <p class="text-sm">الوقت هو المال، ونحن نحميهما لك</p>
             </button>
-
             <button data-id="smart-investors" class="tab-button card-bg p-6 rounded-xl text-center glow-shadow">
-                <i class="fas fa-chart-line text-4xl mb-2"></i>
+                <i class="fas fa-chart-line text-4xl mb-2"></i> 
                 <p class="text-lg font-bold">4️⃣ المستثمرون الذكيون</p>
-                <p class="text-sm">استثمار بأمان، تحكم وعائد مباشر</p>
+                <p class="text-sm">استثمر ببيانات حقيقية</p>
             </button>
         </div>
 
-        <div id="solution-details" class="card-bg p-8 md:p-12 rounded-2xl glow-shadow border border-cyan-800/50">
-            <h3 class="text-3xl font-bold neon-text mb-4" id="content-title"></h3>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <div class="lg:col-span-2 space-y-6 text-gray-300 text-lg" id="content-body"></div>
-                <div class="lg:col-span-1" id="content-image-placeholder">
+        <div id="tab-content" class="card-bg p-8 lg:p-12">
+            <div class="lg:flex lg:gap-8">
+                <div class="lg:w-2/3">
+                    <h3 id="content-title" class="text-3xl font-extrabold mb-5 hero-title-gradient"></h3>
+                    <div id="content-body" class="text-lg leading-relaxed text-gray-300"></div>
+                </div>
+                <div class="lg:w-1/3 mt-6 lg:mt-0" id="content-image-placeholder">
                     </div>
             </div>
         </div>
     </section>
 
     <section id="services" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">💰 لماذا الاستثمار معنا هو أفضل قرار لخفض التكاليف وزيادة الإنتاجية؟ (نحن نضمن عوائد فورية على استثمارك)</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:60px;">الآلية المباشرة: 3 ركائز ننفذ بها مشاريعك الذكية</h2>
         <div class="grid-3">
+            
             <div class="feature-card reveal-item">
                 <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
-                <h3>📉  تقليل تكاليف التشغيل والإنتاج بنسبة تصل إلى 40% </h3>
-                <p class="muted">
-                    نتجاوز استخدام الأجهزة الجاهزة الباهظة! نصمم لك أجهزة  مخصصة تمامًا (PCB)  باستخدام  ESP32 ، مما يعني أنك تدفع مقابل الوظيفة فقط. النتيجة؟  أجهزة أكثر كفاءة، تكلفة شراء وإنتاج أقل بكثير ، وعمر تشغيلي أطول.
-                </p>
+                <h3>⚙️ هندسة الأجهزة المادية (Hardware Engineering)</h3>
+                <p class="muted">نصمم ونبني الأجهزة الإلكترونية (متحكمات، حساسات، بوابات) من الصفر باستخدام أحدث التقنيات مثل <strong>ESP32</strong> لضمان أقصى كفاءة وموثوقية في بيئتك التشغيلية. نضمن أن كل جزء مادي يعمل بشكل مثالي لتنفيذ الأتمتة المطلوبة.</p>
             </div>
+            
             <div class="feature-card reveal-item" style="transition-delay:0.1s">
-                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>🛡️  نظام مراقبة وتحكم "ضد الفشل" بأي موقع جغرافي </h3>
-                <p class="muted">
-                    لا مزيد من القلق حول انقطاع الإنترنت! نجهز نظامك باتصال  احتياطي (Wi-Fi + GSM/GPRS) . نظامك سيبقى  متصلاً 24/7  حتى في المناطق النائية. هذا يضمن  عدم خسارة بيانات  أو  توقف عمليات حيوية ، ويمنحك  السلطة المطلقة  للتحكم من هاتفك.
-                </p>
+                <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+                <h3>🌐 شبكات وربط سحابي (Cloud Integration & Connectivity)</h3>
+                <p class="muted">نستخدم بروتوكولات قوية مثل <strong>MQTT</strong> لتوفير اتصال متصلاً 24/7 حتى في المناطق النائية. هذا يضمن عدم خسارة بيانات أو توقف عمليات حيوية، ويمنحك السلطة المطلقة للتحكم من هاتفك.</p>
             </div>
+
             <div class="feature-card reveal-item" style="transition-delay:0.2s">
                 <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h3>📊  ذكاء الأعمال: تقارير لحظية دقيقة تبني عليها القرارات </h3>
-                <p class="muted">
-                    نحول  المعلومات الأولية إلى بيانات قيمة  باستخدام منصات سحابية قوية مثل AWS IoT و SCADA. ستحصل على  تقارير وتحليلات فورية  تساعدك على  تحديد نقاط الهدر  (الطاقة، المياه، الوقت)  واتخاذ القرارات  بسرعة لتوفير المال. <strong>لا قرارات عشوائية بعد اليوم!</strong>
-                </p>
+                <h3>📊 ذكاء الأعمال: تقارير لحظية دقيقة تبني عليها القرارات</h3>
+                <p class="muted">نحول المعلومات الأولية إلى بيانات قيمة باستخدام منصات سحابية قوية مثل AWS IoT و SCADA. ستحصل على تقارير وتحليلات فورية تساعدك على تحديد نقاط الهدر (الطاقة، المياه، الوقت) واتخاذ القرارات بسرعة لتوفير المال. <strong>لا قرارات عشوائية بعد اليوم!</strong> </p>
             </div>
         </div>
     </section>
@@ -649,9 +655,11 @@
     <section id="projects" class="section-spacing">
         <h2 class="text-center reveal-item" style="margin-bottom:40px;">مشاريعنا: كيف حولنا التحديات إلى أتمتة مربحة لعملائنا</h2>
         <div class="project-grid">
-            
+
             <div class="project-item reveal-item">
-                <img  <img src="project2.jpg"   alt="إنقاذ المنتجات الحساسة" loading="lazy" width="400" height="250">
+                <div class="project-media-container">
+                    <img src="project2.jpg" alt="إنقاذ المنتجات الحساسة" loading="lazy">
+                </div>
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-temperature-three-quarters ml-2"></i> 🚨 إنقاذ المنتجات الحساسة من التلف بخطأ بشري (مراقبة حرارة ورطوبة)</h4>
                     <p class="p-problem">المشكلة التي حُلت: كانت المراقبة يدوية، مما عرض مخزوناً بقيمة كبيرة لخطر التلف بسبب خطأ واحد في القراءة أو تأخر في الاستجابة.</p>
@@ -662,7 +670,15 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.1s">
-                <img  src="project1.jpg"  alt="نظام إدارة المواقف الذكي" loading="lazy" width="400" height="250">
+                <div class="project-media-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/videoseries?list=PLB-d8D3pQ_4n_6TzS3d9J4X1nQ5Q8e5vL" 
+                        title="Embedded YouTube Video Example" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-car ml-2"></i> 🚗 إنهاء الازدحام والفوضى: نظام إدارة المواقف الذكي والتحكم في البوابات</h4>
                     <p class="p-problem">المشكلة التي حُلت: ازدحام مستمر في المواقف وصعوبة في التحكم بالدخول والخروج، مما أدى إلى إهدار وقت الموظفين وزيادة شكاوى العملاء.</p>
@@ -673,7 +689,9 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.2s">
-                <img  src="project4.jpg"  alt="روبوت متحرك بذراع آلية" loading="lazy" width="400" height="250">
+                <div class="project-media-container">
+                    <img src="project4.jpg" alt="روبوت متحرك بذراع آلية" loading="lazy">
+                </div>
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-robot ml-2"></i> ☢️ روبوت متحرك بذراع آلية للتحكم عن بعد (مهام البيئات الخطرة)</h4>
                     <p class="p-problem">المشكلة التي حُلت: الحاجة إلى إجراء فحوصات أو التعامل مع مواد خطرة في بيئات تهدد سلامة الموظفين أو يصعب الوصول إليها مادياً.</p>
@@ -684,7 +702,9 @@
             </div>
 
             <div class="project-item reveal-item" style="transition-delay:0.3s">
-                <img  src="project3.jpg"  alt="نظام التحكم الذكي بالوصول" loading="lazy" width="400" height="250">
+                <div class="project-media-container">
+                    <img src="project3.jpg" alt="نظام التحكم الذكي بالوصول" loading="lazy">
+                </div>
                 <div class="project-info">
                     <h4 class="neon-text"><i class="fa-solid fa-lock ml-2"></i> 🔐 زيادة أمان المنشأة: نظام التحكم الذكي بالوصول (الباب الذكي)</h4>
                     <p class="p-problem">المشكلة التي حُلت: صعوبة تتبع من يدخل ويخرج من المناطق الحساسة، والحاجة إلى سجل دقيق وموثوق لحركات الموظفين.</p>
@@ -693,31 +713,20 @@
                     </p>
                 </div>
             </div>
-            
+
             <h3 class="text-center text-xl font-bold neon-text w-full mt-8">لديك تحدٍ تشغيلي مشابه؟ <a href="#contact" class="text-yellow-400 hover:text-yellow-300">تواصل معنا لتجنب المزيد من الخسائر الآن!</a></h3>
 
         </div>
     </section>
-
     <section id="about" class="section-spacing">
         <h2 class="text-center reveal-item" style="margin-bottom:60px;">الرؤية الرقمية: خبراء في دمج الهاردوير والسوفتوير (التحكم الكامل)</h2>
         <div class="about-flex">
             <div class="about-text reveal-item">
                 <h3>الرؤية الرقمية: خبراء في دمج الهاردوير والسوفتوير (التحكم الكامل)</h3>
-                <p>
-                    نحن متخصصون في تحويل التحديات التشغيلية المعقدة إلى أنظمة ذكية متكاملة تعمل بشكل تلقائي. 
-                </p>
-                <p>. مهمتنا تتجاوز مجرد تركيب الأجهزة؛ نحن نطور كل من المكونات المادية (الهاردوير) والمنصات السحابية (السوفتوير) لضمان التوافق الكامل والكفاءة القصوى.
-                </p>
-                <p>
-   هذه الخبرة المتكاملة تضمن لك نظاماً موثوقاً وقابلاً للتوسع، يقلل من التكاليف التشغيلية ويحسن كفاءة العمليات . الأهم: لن تجد أي نقل مسؤولية بين مبرمج ومهندس، فالفريق واحد.
-                </p>
-
-
-                <p>
-                    نغطي جميع مراحل المشروع: من رسم الدوائر الإلكترونية المطبوعة ( <strong>PCB</strong> ) إلى نشر النظام على السحابة ( <strong>Cloud Deployment</strong> ).
-                </p>
-                
+                <p> نحن متخصصون في تحويل التحديات التشغيلية المعقدة إلى أنظمة ذكية متكاملة تعمل بشكل تلقائي. </p>
+                <p>. مهمتنا تتجاوز مجرد تركيب الأجهزة؛ نحن نطور كل من المكونات المادية (الهاردوير) والمنصات السحابية (السوفتوير) لضمان التوافق الكامل والكفاءة القصوى. </p>
+                <p> هذه الخبرة المتكاملة تضمن لك نظاماً موثوقاً وقابلاً للتوسع، يقلل من التكاليف التشغيلية ويحسن كفاءة العمليات . الأهم: لن تجد أي نقل مسؤولية بين مبرمج ومهندس، فالفريق واحد. </p>
+                <p> نغطي جميع مراحل المشروع: من رسم الدوائر الإلكترونية المطبوعة ( <strong>PCB</strong> ) إلى نشر النظام على السحابة ( <strong>Cloud Deployment</strong> ). </p>
                 <h3 style="margin-top:30px;">ماذا نقدم لك؟</h3>
                 <ul>
                     <li><i class="fa-solid fa-microchip"></i> تطوير متكامل: نجمع بين تصميم الأجهزة المادية والبرمجة السحابية في مكان واحد.</li>
@@ -725,45 +734,37 @@
                     <li><i class="fa-solid fa-lock"></i> أمان وقابلية توسع: بناء قنوات اتصال مشفرة وموثوقة لتحمل النمو المستقبلي لبياناتك.</li>
                 </ul>
             </div>
-            
             <div class="founder-card reveal-item" style="transition-delay:0.1s">
-              <img  src="1761501129906.jpg"alt="أيمن عبدالله زياد" loading="lazy" width="220" height="220">
-                <h4>Ayman Abdullah Ziad</h4>
-                <p class="text-base text-gray-400">D.V</p>
-                <p class="text-sm">مهندس IoT</p>
-                <a href="#contact" class="btn-primary" style="display:block;margin-top:20px;">احجز موعداً مباشرة</a>
+                <img src="1761501129906.jpg"alt="أيمن زياد المؤسس" width="200" height="220">
+                <h4>أيمن عبد الله زياد</h4>
+                <p class="text-muted">مؤسس الرؤية الرقمية<br>مهندس أنظمة ذكية (IoT)</p>
             </div>
         </div>
     </section>
 
-  
 
     <section id="contact" class="section-spacing">
-        <h2 class="text-center reveal-item" style="margin-bottom:40px;">💡 هل لديك مشكلة ملحة؟ لنحولها إلى حل مربح: احجز استشارتك المجانية اليوم!</h2>
+        <h2 class="text-center reveal-item" style="margin-bottom:60px;">ابدأ الآن: استشارة مجانية ترسم خارطة طريق مشروعك</h2>
         <div class="contact-grid">
             
             <div class="form-card reveal-item">
-                <h3>اطلب استشارة مجانية وعرض سعر (بدون أي التزام)</h3>
                 <form id="contact-form">
+                    <h3>أخبرنا عن تحديك</h3>
                     <label for="name">الاسم الكامل</label>
                     <input type="text" id="name" name="name" placeholder="الاسم الكامل" required>
-                    
-
-                    <label for="company">اسم الشركة /المستشفى / المنشأة</label>
+                    <label for="company">المنشأة/المؤسسة (اختياري)</label>
                     <input type="text" id="company" name="company" placeholder="اسم شركتك أو مستشفاك أو منشأتك" required>
-
                     <label for="phone">رقم الهاتف</label>
                     <input type="tel" id="phone" name="phone" placeholder="777777777" required style="text-align: right;">
-
                     <label for="email">البريد الإلكتروني</label>
                     <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" required>
-
+                    
                     <label for="governorate">المحافظة</label>
                     <select id="governorate" name="governorate" required>
                         <option value="" disabled selected>اختر محافظتك...</option>
                         <option value="أمانة العاصمة">أمانة العاصمة</option>
                         <option value="صنعاء">صنعاء</option>
-                       <option value="ذمار">ذمار</option>
+                        <option value="ذمار">ذمار</option>
                         <option value="عدن">عدن</option>
                         <option value="حضرموت">حضرموت</option>
                         <option value="تعز">تعز</option>
@@ -791,240 +792,207 @@
                     <label for="message">تفاصيل المشكلة /التحدي</label>
                     <textarea id="message" name="message" rows="5" placeholder="شرح موجز للتحدي الذي تواجهه وكيف يمكن أن نساعد." required></textarea>
                     
-                  
                     <button type="submit" class="btn-primary submit">📧 إرسال طلب الاستشارة وبدء رحلة الأتمتة</button>
-                  
                 </form>
             </div>
 
             <div class="contact-info-block reveal-item" style="transition-delay:0.1s">
                 <h3>معلومات التواصل المباشر</h3>
                 <p><i class="fa-solid fa-envelope"></i> البريد الإلكتروني: aimanziadxxx@gmail.com</p>
-                <p><i class="fa-brands fa-whatsapp"></i>  واتساب 967777752638+</p>
+                <p><i class="fa-brands fa-whatsapp"></i> واتساب 967777752638+</p>
                 <p><i class="fa-solid fa-location-dot"></i> الموقع: اليمن </p>
                 <p class="text-sm mt-4" style="line-height:1.5; color:var(--muted)">نحن متواجدون للرد على استفساراتكم خلال ساعات العمل الرسمية. لا تتردد في التواصل لبدء نقاش حول كيفية تحقيق أهدافك التقنية وتوفير التكاليف التشغيلية.</p>
                 <div style="margin-top:30px;">
-                    <a href="https://wa.me/967777752638" target="_blank" class="btn-primary" style="width:100%;text-align:center;display:block;">تواصل واتساب مباشر</a>
+                    <a href="https://wa.me/967777752638" class="btn-primary" target="_blank">بدء محادثة واتساب الآن</a>
                 </div>
             </div>
-
         </div>
     </section>
-    
-                    <section id="contact-cta-new" class="text-center card-bg p-12 rounded-2xl glow-shadow border border-purple-800/50 section-spacing">
-        <h2 class="text-4xl font-extrabold mb-4 hero-title-gradient">
-            <i class="fas fa-rocket ml-2"></i> باختصار: نحن قادرون على البناء اليوم!
-        </h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            نحن نقدم لك تجربة التحكم الكامل، الأمان، والراحة، مع تقارير دقيقة لحظة بلحظة، وأنت في مكانك، سواء كنت مدير مستشفى، مالك شركة، مستثمر أو صاحب منزل.
-        </p>
 
-    </section>
   </main>
+
+
+  <footer>
+    <div class="container">
+      &copy; 2024 Digital Vision. جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <div class="floating-action-buttons">
+      <a href="https://wa.me/967777752638" target="_blank" class="fab-button whatsapp-fab glow-shadow">
+          <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="tel:+967777752638" class="fab-button call-fab glow-shadow">
+          <i class="fas fa-phone"></i>
+      </a>
+      <a href="mailto:aimanziadxxx@gmail.com" class="fab-button sms-fab glow-shadow">
+          <i class="fas fa-envelope"></i>
+      </a>
+  </div>
 
   <div id="notification"></div>
 
-  <div class="floating-action-buttons">
-    <a href="tel:+967777752638" class="fab-button call-fab" aria-label="اتصال مباشر">
-        <i class="fa-solid fa-phone"></i>
-    </a>
-    <a href="sms:+967777752638" class="fab-button sms-fab" aria-label="إرسال رسالة SMS">
-        <i class="fa-solid fa-comment-sms"></i>
-    </a>
-    <a href="https://wa.me/967777752638" target="_blank" class="fab-button whatsapp-fab" aria-label="تواصل عبر واتساب">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-  </div>
- 
 
-  <footer>
-   
-      <p class="text-gray-400 text-sm">&copy; 2025 شركة الرؤية الرقمية — Digital Vision. جميع الحقوق محفوظة.</p>
-      <p class="text-xs mt-2 text-cyan-600">القوة تكمن في البيانات، والتحكم يكمن في الأتمتة.</p>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.waves.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Vanta.js Background Initialization
-        VANTA.WAVES({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x011d3d, /* لون موجات أزرق داكن */
-            shininess: 30.00,
-            waveHeight: 15.00,
-            waveSpeed: 1,
-            zoom: 0.75
-        });
+    /* ------------------------------------- */
+    /* Vanta.js Background Setup */
+    /* ------------------------------------- */
+    // هذا الكود مسؤول عن تأثير الموجات في الخلفية 
+    VANTA.WAVES({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x00ffff, // اللون السيان
+      shininess: 30.00,
+      waveHeight: 15.00,
+      waveSpeed: 1,
+      zoom: 0.75
+    });
 
 
-        const tabsData = [
-            // 1. المستشفيات الذكية
-            {
-                id: 'smart-hospitals',
-                title: '🏥 1️⃣ المستشفيات الذكية: كل ثانية بدون مراقبة = حياة ومال مهدور',
-                icon: 'fa-hospital',
-                content: `
-                    <p class="font-bold text-cyan-400 text-2xl mb-4">نحن قادرون على بناء أنظمة ذكية تحول المستشفى إلى بيئة آمنة، فعّالة، وذكية، تضمن لك التحكم الكامل والمراقبة الدقيقة دون عناء، وتحصل على تقارير مفصلة بكل لحظة.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-bed ml-2"></i> إدارة الأسرة والأقسام:</h4>
-                    <p>معرفة دقيقة لأماكن المرضى، سرعة نقلهم بين الأقسام، وتحسين الخدمة بشكل مستمر. يمكنك معرفة الأسرة الفارغة والمليئة فعليًا، مع زر طوارئ لكل مريض لتصل الخدمة الفورية عند الحاجة.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-tint ml-2"></i> إدارة المياه تلقائيًا:</h4>
-                    <p>تنبيهات قبل نفاد المياه من السطح أو الخزان الأرضي، مع تحكم أوتوماتيكي يضمن عدم توقف الخدمة أبدًا.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-bolt ml-2"></i> إدارة الطاقة والمولدات:</h4>
-                    <p>تحكم كامل بالطاقة الشمسية، الكهرباء الحكومية، والخط الخاص أو المولدات. نرسل لك تقارير فورية عند التغيير بين الخطوط أو حدوث أي عطل. التحكم أوتوماتيكي بالإضاءة والمكيفات وستائر كل جناح أو غرفة.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-fire-extinguisher ml-2"></i> أمان وحفظ المعدات:</h4>
-                    <p>مراقبة دخول وخروج الموظفين والمرضى، وضبط الحرارة والرطوبة لحفظ الأدوية والمعدات الحساسة، مع إطلاق التحذيرات عند الحرائق أو تسرب الغازات أو الدخان.</p>
-                `,
-                image: 'https://csiohxuwzaiysttknbez.supabase.co/storage/v1/object/public/images/news-pictures/iot-internet-of-things-bc8b3238-35be-4b75-ad3e-3e5b73436702.jpg'
-              ////  image: 'https://asimily.com/wp-content/uploads/2022/03/10-helthcare-iot-examples-asimily.png'
-            },
-            // 2. المنازل الذكية
-            {
-                id: 'smart-homes',
-                title: '🏠 2️⃣ المنازل الذكية: حياتك في بيتك تتحول إلى تجربة ذكية وهادئة',
-                icon: 'fa-house-chimney',
-                content: `
-                    <p class="font-bold text-cyan-400 text-2xl mb-4">كل شيء في بيتك تحت السيطرة الكاملة عبر هاتفك: الأمان، الطاقة، وحتى الترفيه. تحكم بالكامل ووفر المجهود والتكاليف.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-door-open ml-2"></i> أبواب ونوافذ ذكية:</h4>
-                    <p>تحكم كامل عبر الهاتف مع تسجيل كل حركة لضمان الأمان التام، وإشعارات فورية عند محاولة أي اختراق.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-lightbulb ml-2"></i> إدارة الطاقة والأجهزة:</h4>
-                    <p>تشغيل وإيقاف الأضواء والمكيفات وستائر كل غرفة تلقائيًا بناءً على وجودك أو جدول زمني محدد لتوفير الكهرباء.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-shield-alt ml-2"></i> نظام أمان متقدم:</h4>
-                    <p>تنبيه فوري عند أي دخيل أو حركة غير متوقعة، مع إمكانية مراقبة كل زاوية من منزلك عن بُعد وتسجيل الفيديو.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-solar-panel ml-2"></i> محطات طاقة ذكية:</h4>
-                    <p>إدارة الطاقة الشمسية والكهرباء لتقليل فواتير الاستهلاك الشهرية وزيادة الاستقلالية عن الشبكة العامة.</p>
-                `,
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSruwXVxQUabsXqMZ9Z1E9Ms8WV-8G58hS4Aq1yLjzrtHQDfhtJ5Zsz8AS4_OrcTEGRwXo&usqp=CAU'
-            },
-            // 3. الشركات الذكية
-            {
-                id: 'smart-companies',
-                title: '🏢 3️⃣ الشركات الذكية: الوقت هو المال، ونحن نحميهما لك',
-                icon: 'fa-building',
-                content: `
-                    <p class="font-bold text-cyan-400 text-2xl mb-4">أنظمتنا توفر لك السيطرة على كل شيء، من الإنتاج إلى الموظفين، لتزيد الكفاءة وتقلل الهدر بشكل لم يسبق له مثيل.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-warehouse ml-2"></i> مراقبة الإنتاج والمخازن:</h4>
-                    <p>تقارير لحظية لكل خط إنتاج أو مخزن، لتعرف كل صغيرة وكبيرة فور حدوثها، وتحديد نقاط الهدر في سلسلة الإمداد.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-truck-fast ml-2"></i> إدارة المركبات والموظفين:</h4>
-                    <p>تتبع المسارات وتحليل أداء السائقين والمركبات لتقليل استهلاك الوقود وزيادة الإنتاجية في عمليات النقل واللوجستيات.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-gear ml-2"></i> أتمتة المصانع والمكاتب:</h4>
-                    <p>تشغيل الأجهزة والمعدات الثقيلة فقط عند الحاجة الفعلية لتقليل التكاليف التشغيلية دون التأثير على الأداء أو جودة المنتج.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-temperature-three-quarters ml-2"></i> البيئة الذكية للموظفين:</h4>
-                    <p>ضبط حرارة ورطوبة المكاتب وغرف الاجتماعات تلقائيًا لراحة الموظفين وزيادة تركيزهم وإنتاجيتهم.</p>
-                `,
+    /* ------------------------------------- */
+    /* Tabs Functionality (الخدمات التفاعلية) */
+    /* ------------------------------------- */
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const contentTitle = document.getElementById('content-title');
+    const contentBody = document.getElementById('content-body');
+    const contentImagePlaceholder = document.getElementById('content-image-placeholder');
 
-                image: 'https://csiohxuwzaiysttknbez.supabase.co/storage/v1/object/public/images/news-pictures/iot-internet-of-things-bc8b3238-35be-4b75-ad3e-3e5b73436702.jpg'
-            },
-            // 4. المستثمرون الذكيون
-            {
-                id: 'smart-investors',
-                title: '💰 4️⃣ المستثمرون الذكيون: الاستثمار اليوم أصبح ذكيًا، بفضل البيانات والتحكم المباشر',
-                icon: 'fa-chart-line',
-                content: `
-                    <p class="font-bold text-cyan-400 text-2xl mb-4">استثمر بأمان، تابع أرباحك لحظة بلحظة، وتحكم في كل مشروع عن بُعد، لتحقيق أقصى عائد بأقل جهد ممكن.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-industry ml-2"></i> مشاريع إنترنت الأشياء الصناعية (IIoT):</h4>
-                    <p>مراقبة خطوط الإنتاج عن بعد وتحليل البيانات بشكل عميق لتحديد نقاط الضعف، لزيادة الأرباح وتقليل الأخطاء التشغيلية في المشاريع الصناعية الكبرى.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-city ml-2"></i> عقارات ومجمعات سكنية ذكية:</h4>
-                    <p>تحكم في استهلاك الطاقة والأمان وتجربة المستخدم في العقارات المؤجرة لزيادة قيمة العقار في السوق بشكل ملموس وجذب مستأجرين جدد.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-money-bill-trend-up ml-2"></i> تحليل بيانات لحظي للقرار:</h4>
-                    <p>اعرف فرص الربح والخسارة قبل أن تحدث، وقرر بسرعة وذكاء بناءً على مؤشرات أداء دقيقة ومُقاسة في الوقت الفعلي.</p>
-                    <h4 class="text-xl font-bold neon-text"><i class="fas fa-globe ml-2"></i> إدارة المخاطر عن بعد:</h4>
-                    <p>التحكم عن بعد في جميع الأصول، وإدارة المخاطر التشغيلية، وزيادة العائد بأقل جهد ممكن من أي مكان في العالم.</p>
-                `,
-                image: 'https://itach.dk/wp-content/uploads/2024/06/iot.png'
-            }
-        ];
+    const tabsData = [
+      // 1. المستشفيات الذكية
+      { 
+        id: 'smart-hospitals', 
+        title: '🏥 1️⃣ المستشفيات الذكية: كل ثانية بدون مراقبة = حياة ومال مهدور', 
+        icon: 'fa-hospital', 
+        content: `
+            <p class="font-bold text-cyan-400 text-2xl mb-4">نحن قادرون على بناء أنظمة ذكية تحول المستشفى إلى بيئة آمنة، فعّالة، وذكية، تضمن لك التحكم الكامل والمراقبة الدقيقة دون عناء، وتحصل على تقارير مفصلة بكل لحظة.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-bed ml-2"></i> إدارة الأسرة والأقسام:</h4>
+            <p>معرفة دقيقة لأماكن المرضى، سرعة نقلهم بين الأقسام، وتحسين الخدمة بشكل مستمر. يمكنك معرفة الأسرة الفارغة والمليئة فعليًا، مع زر طوارئ لكل مريض لتصل الخدمة الفورية عند الحاجة.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-tint ml-2"></i> إدارة المياه تلقائيًا:</h4>
+            <p>تنبيهات قبل نفاد المياه من السطح أو الخزان الأرضي، مع تحكم أوتوماتيكي يضمن عدم توقف الخدمة أبدًا.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-bolt ml-2"></i> إدارة الطاقة والمولدات:</h4>
+            <p>تحكم كامل بالطاقة الشمسية، الكهرباء الحكومية، والخط الخاص أو المولدات. نرسل لك تقارير فورية عند التغيير بين الخطوط أو حدوث أي عطل. التحكم أوتوماتيكي بالإضاءة والمكيفات وستائر كل جناح أو غرفة.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-fire-extinguisher ml-2"></i> أمان وحفظ المعدات:</h4>
+            <p>مراقبة دخول وخروج الموظفين والمرضى، وضبط الحرارة والرطوبة لحفظ الأدوية والمعدات الحساسة، مع إطلاق التحذيرات عند الحرائق أو تسرب الغازات أو الدخان.</p>
+        `, 
+        image: 'https://csiohxuwzaiysttknbez.supabase.co/storage/v1/object/public/images/news-pictures/iot-internet-of-things-bc8b3238-35be-4b75-ad3e-3e5b73436702.jpg'
+      },
+      // 2. المنازل الذكية
+      { 
+        id: 'smart-homes', 
+        title: '🏠 2️⃣ المنازل الذكية: حياتك في بيتك تتحول إلى تجربة ذكية وهادئة', 
+        icon: 'fa-house-chimney', 
+        content: `
+            <p class="font-bold text-cyan-400 text-2xl mb-4">نظام متكامل يحول منزلك إلى مساحة تتفاعل معك، تمنحك الأمان المطلق وتوفر عليك الكثير من الوقت والجهد والتكلفة.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-plug ml-2"></i> أتمتة التحكم بالكهرباء:</h4>
+            <p>تحكم في الإضاءة والمكيفات والمراوح بشكل آلي حسب وجودك وتوقيتاتك، مما يقلل فواتير الكهرباء بشكل كبير.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-sun ml-2"></i> إدارة الطاقة الشمسية بكفاءة:</h4>
+            <p>التحكم الآلي والذكي في التحويل بين خطوط الطاقة (شمسي، حكومي، مولد) لضمان استمرارية الخدمة بأقل تكلفة، وتوفير تقارير دقيقة عن كفاءة الألواح.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-lock ml-2"></i> أمان المنزل وتنبيهات فورية:</h4>
+            <p>مراقبة شاملة للأبواب والنوافذ والحرائق والغازات الخطرة، مع إشعارات فورية على هاتفك في حال وجود أي خطر أو كسر في الأمان.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-tv ml-2"></i> التحكم السهل في الأجهزة:</h4>
+            <p>دمج أنظمة التحكم بالأجهزة عبر تطبيق مركزي، مما يمنحك السيطرة الكاملة على كل شيء في بيتك من أي مكان في العالم.</p>
+        `, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSruwXVxQUabsXqMZ9Z1E9Ms8WV-8G58hS4Aq1yLjzrtHQDfhtJ5Zsz8AS4_OrcTEGRwXo&usqp=CAU'
+      },
+      // 3. الشركات الذكية
+      { 
+        id: 'smart-companies', 
+        title: '🏢 3️⃣ الشركات والمصانع الذكية: الوقت هو المال، ونحن نحميهما لك', 
+        icon: 'fa-building', 
+        content: `
+            <p class="font-bold text-cyan-400 text-2xl mb-4">أنظمتنا توفر لك السيطرة على كل شيء، من الإنتاج إلى الموظفين، لتزيد الكفاءة وتقلل الهدر بشكل لم يسبق له مثيل.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-warehouse ml-2"></i> مراقبة الإنتاج والمخازن:</h4>
+            <p>تقارير لحظية لكل خط إنتاج أو مخزن، لتعرف كل صغيرة وكبيرة فور حدوثها، وتحديد نقاط الهدر في سلسلة الإمداد.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-truck-fast ml-2"></i> إدارة المركبات والموظفين:</h4>
+            <p>تتبع المسارات وتحليل أداء السائقين والمركبات لتقليل استهلاك الوقود وزيادة الإنتاجية في عمليات النقل واللوجستيات.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-gear ml-2"></i> أتمتة المصانع والمكاتب:</h4>
+            <p>تشغيل الأجهزة والمعدات الثقيلة فقط عند الحاجة الفعلية لتقليل التكاليف التشغيلية دون التأثير على الأداء أو جودة المنتج.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-temperature-three-quarters ml-2"></i> البيئة الذكية للموظفين:</h4>
+            <p>ضبط حرارة ورطوبة المكاتب وغرف الاجتماعات تلقائيًا لراحة الموظفين وزيادة تركيزهم وإنتاجيتهم.</p>
+        `, 
+        image: 'https://csiohxuwzaiysttknbez.supabase.co/storage/v1/object/public/images/news-pictures/iot-internet-of-things-bc8b3238-35be-4b75-ad3e-3e5b73436702.jpg'
+      },
+      // 4. المستثمرون الذكيون
+      { 
+        id: 'smart-investors', 
+        title: '💰 4️⃣ المستثمرون الذكيون: الاستثمار اليوم أصبح ذكيًا، بفضل البيانات والتحكم المباشر', 
+        icon: 'fa-chart-line', 
+        content: `
+            <p class="font-bold text-cyan-400 text-2xl mb-4">استثمر بأمان، تابع أداء أصولك عن بُعد، وتخذ قراراتك بناءً على تقارير دقيقة وموثوقة من النظام نفسه.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-dollar-sign ml-2"></i> أتمتة إدارة الإيجارات والمخزون:</h4>
+            <p>نظام ذكي لإدارة المباني المؤجرة، يراقب حالة الكهرباء والمياه والأنظمة الأمنية، ويقلل الحاجة إلى تدخل بشري مستمر.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-microchip ml-2"></i> متابعة أداء الأصول عن بعد:</h4>
+            <p>سواء كانت مضخات مياه، أو مولدات، أو مزارع شمسية، يمكنك مراقبة حالتها وكفاءتها وتلقي تنبيهات الأعطال الفورية لتقليل تكاليف الصيانة الطارئة.</p>
+            <h4 class="text-xl font-bold neon-text"><i class="fas fa-chart-bar ml-2"></i> تقارير استثمارية دقيقة:</h4>
+            <p>نقدم لك تقارير تحليلية عن استهلاك الطاقة والمياه وأداء الأصول، تترجم مباشرة إلى مؤشرات مالية تساعدك في التخطيط المستقبلي لزيادة الأرباح.</p>
+        `, 
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjU3g0D1-L4B8n0_zGq9Xj1-H6W715V9s8Xw&usqp=CAU'
+      },
+    ];
 
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const contentTitle = document.getElementById('content-title');
-        const contentBody = document.getElementById('content-body');
-        const contentImagePlaceholder = document.getElementById('content-image-placeholder');
+    function updateContent(id) {
+      const selectedTab = tabsData.find(tab => tab.id === id);
+      if (!selectedTab) return;
 
-        function updateContent(id) {
-            const selectedTab = tabsData.find(tab => tab.id === id);
-            if (!selectedTab) return;
+      contentTitle.textContent = selectedTab.title;
+      contentBody.innerHTML = selectedTab.content;
+      contentImagePlaceholder.innerHTML = `<img src="${selectedTab.image}" alt="صورة حلول ${selectedTab.id}" class="rounded-lg shadow-lg border border-cyan-500/50 transform hover:scale-105 transition-transform duration-300 w-full h-auto max-h-80 object-cover mx-auto glow-shadow" loading="lazy" width="400" height="225">`;
+    }
 
-            contentTitle.textContent = selectedTab.title;
-            contentBody.innerHTML = selectedTab.content;
-            contentImagePlaceholder.innerHTML = `<img src="${selectedTab.image}" alt="صورة حلول ${selectedTab.id}" class="rounded-lg shadow-lg border border-cyan-500/50 transform hover:scale-105 transition-transform duration-300 w-full h-auto max-h-80 object-cover mx-auto glow-shadow" loading="lazy" width="400" height="225">`;
-        }
+    function handleTabClick(event) {
+      const button = event.currentTarget;
+      const targetId = button.getAttribute('data-id');
+      
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      updateContent(targetId);
+    }
 
-        function handleTabClick(event) {
-            const button = event.currentTarget;
-            const targetId = button.getAttribute('data-id');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', handleTabClick);
+    });
 
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+    // تعيين المحتوى الأولي (لأول تبويب)
+    const initialTabId = tabButtons[0]?.getAttribute('data-id');
+    if (initialTabId) {
+      updateContent(initialTabId);
+    }
 
-            updateContent(targetId);
-        }
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', handleTabClick);
-        });
+    /* ------------------------------------- */
+    /* Contact Form & Notification */
+    /* ------------------------------------- */
+    const form = document.getElementById('contact-form');
+    const notification = document.getElementById('notification');
+    const submitButton = form.querySelector('.submit');
+    const originalButtonText = submitButton.innerHTML;
 
-        // تعيين المحتوى الأولي (لأول تبويب)
-        const initialTabId = tabButtons[0]?.getAttribute('data-id');
-        if (initialTabId) {
-            updateContent(initialTabId);
-        }
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        submitButton.innerHTML = 'جاري التجهيز...';
+        submitButton.disabled = true;
 
-        /* ------------------------------------- */
-        /* Scroll Reveal - من الكود الثاني (تم الإبقاء عليه) */
-        /* ------------------------------------- */
-        const revealElements = document.querySelectorAll('.reveal-item');
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        const name = document.getElementById('name').value;
+        const company = document.getElementById('company').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const governorate = document.getElementById('governorate').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
 
-        revealElements.forEach(el => {
-            observer.observe(el);
-        });
+        // 1. رقم الواتساب المستهدف (بدون + أو 00)
+        const whatsappNumber = '967777752638';
 
-        // ⭐ --- كود JavaScript لإرسال النموذج وإظهار الإشعار --- ⭐
-        const form = document.getElementById('contact-form');
-        const notification = document.getElementById('notification');
-
-        async function handleSubmit(event) {
-            event.preventDefault(); // منع الإرسال التقليدي
-            const submitButton = form.querySelector('.submit');
-            const originalButtonText = submitButton.innerHTML;
-
-            // تغيير نص الزر للإشارة إلى أن الإرسال قيد التنفيذ
-            submitButton.innerHTML = 'الرجاء الانتظار... <i class="fa-solid fa-spinner fa-spin"></i>';
-            submitButton.disabled = true;
-
-            // --- بداية الكود الجديد للإرسال عبر واتساب ---
-
-            // 1. قراءة البيانات من الحقول
-            const name = document.getElementById('name').value;
-            const company = document.getElementById('company').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const governorate = document.getElementById('governorate').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // 2. رقم الواتساب المستهدف (بدون + أو 00)
-            const whatsappNumber = '967777752638';
-
-            // 3. تنسيق الرسالة
-            const whatsappMessage = `
+        // 2. تنسيق الرسالة
+        const whatsappMessage = `
 *طلب استشارة جديد من موقع الرؤية الرقمية* 🚀
 -----------------------------------
 *الاسم الكامل:* ${name}
@@ -1038,29 +1006,46 @@ ${subject}
 
 *تفاصيل التحدي:*
 ${message}
-            `.trim();
+        `.trim();
 
-            // 4. إنشاء رابط واتساب وتشفير الرسالة
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        // 3. إنشاء رابط واتساب وتشفير الرسالة
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-            // 5. فتح الرابط في نافذة جديدة وتحديث الواجهة
-            window.open(whatsappUrl, '_blank');
-            showNotification('✅ تم تجهيز رسالتك! اضغط "إرسال" في واتساب.', 'success');
-            form.reset();
-            submitButton.innerHTML = originalButtonText;
-            submitButton.disabled = false;
-        }
+        // 4. فتح الرابط في نافذة جديدة وتحديث الواجهة
+        window.open(whatsappUrl, '_blank');
+        showNotification('✅ تم تجهيز رسالتك! اضغط "إرسال" في واتساب.', 'success');
+        form.reset();
+        submitButton.innerHTML = originalButtonText;
+        submitButton.disabled = false;
+    });
 
-        function showNotification(message, type) {
-            notification.textContent = message;
-            notification.className = type; // 'success' or 'error'
-            notification.classList.add('show');
-            setTimeout(() => { notification.classList.remove('show'); }, 5000); // إخفاء الإشعار بعد 5 ثوانٍ
-        }
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = type; // 'success' or 'error'
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+    }
+    
+    /* ------------------------------------- */
+    /* Scroll Reveal - من الكود الثاني (تم الإبقاء عليه) */
+    /* ------------------------------------- */
+    const revealElements = document.querySelectorAll('.reveal-item');
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 }); // يبدأ الظهور عندما يكون 10% من العنصر مرئياً
 
-        form.addEventListener('submit', handleSubmit);
+    revealElements.forEach(element => {
+        observer.observe(element);
     });
   </script>
+
 </body>
 </html>
